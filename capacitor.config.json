@@ -1,0 +1,6 @@
+{
+  "appId": "com.distribuzioni.app",
+  "appName": "distribuzioni",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}
