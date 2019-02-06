@@ -18,11 +18,12 @@ const routes: Routes = [
   { path: 'profile', loadChildren: './modules/user/pages/profile/profile.module#ProfilePageModule' },
   { path: 'signup', loadChildren: './modules/user/pages/signup/signup.module#SignupPageModule' },
   { path: 'login', loadChildren: './modules/user/pages/login/login.module#LoginPageModule' },
-  { path: 'reset-password', loadChildren: './modules/user/pages/reset-password/reset-password.module#ResetPasswordPageModule' }
+  { path: 'reset-password', loadChildren: './modules/user/pages/reset-password/reset-password.module#ResetPasswordPageModule' },
+  { path: 'user', loadChildren: 'app/modules/user.module#UserMOdule' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

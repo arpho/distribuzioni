@@ -1,6 +1,6 @@
 {
   "name": "distribuzioni",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Arpho",
   "scripts": {
     "ng": "ng",
@@ -29,6 +29,7 @@
     "core-js": "^2.5.4",
     "firebase": "^5.8.2",
     "rxjs": "~6.3.3",
+    "terser": "^3.14.1",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
