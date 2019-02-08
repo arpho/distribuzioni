@@ -18,9 +18,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
+    IonicModule.forRoot(),
     RouterModule.forChild(routes)
   ],
   declarations: [SignupPage]
 })
-export class SignupPageModule {}
+export class SignupPageModule { }
