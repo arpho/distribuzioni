@@ -11,12 +11,14 @@ import { AppRoutingModule } from "./app-routing.module";
 import { UserModule } from "./modules/user/user.module";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
+import { ItemModule } from "./modules/item/item.module";
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    // ItemModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     UserModule,
