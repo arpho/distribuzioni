@@ -1,14 +1,16 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouteReuseStrategy } from "@angular/router";
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { UserModule } from './modules/user/user.module';
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { UserModule } from "./modules/user/user.module";
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { environment } from "../environments/environment";
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +19,10 @@ import { UserModule } from './modules/user/user.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    UserModule
+    UserModule,
+    ServiceWorkerModule.register("ngsw-worker.js", {
+      enabled: environment.production
+    })
   ],
   providers: [
     StatusBar,
@@ -27,4 +32,4 @@ import { UserModule } from './modules/user/user.module';
 
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
