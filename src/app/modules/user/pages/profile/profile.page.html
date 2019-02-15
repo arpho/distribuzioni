@@ -28,7 +28,24 @@
               size="7"
               *ngIf="userProfile?.firstName || userProfile?.lastName"
             >
-              {{ userProfile?.firstName }} {{ userProfile?.lastName }}
+              {{ userProfile?.firstName }}
+            </ion-col>
+            <ion-col
+              size="7"
+              class="placeholder-profile text-center"
+              *ngIf="!userProfile?.firstName"
+            >
+              <span> Tap here to edit. </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text-left" size="5"> Cognome </ion-col>
+            <ion-col
+              class="text-center"
+              size="7"
+              *ngIf="userProfile?.firstName || userProfile?.lastName"
+            >
+              {{ userProfile?.lastName }}
             </ion-col>
             <ion-col
               size="7"
@@ -47,7 +64,7 @@
         displayFormat="MMM D, YYYY"
         pickerFormat="D MMM YYYY"
         [(ngModel)]="birthDate"
-        (click)="updateDOB(birthDate)"
+        (ionChange)="updateDOB(birthDate)"
       >
       </ion-datetime>
     </ion-item>

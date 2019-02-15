@@ -29,7 +29,6 @@ export class ProfileService {
   }
 
   updateDOB(birthDate: string): Promise<any> {
-    console.log("updating dob", birthDate);
     return this.userProfile.update({ birthDate });
   }
 

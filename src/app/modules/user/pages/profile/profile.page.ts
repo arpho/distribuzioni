@@ -21,14 +21,16 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     if (this.profileService.getUserProfile()) {
-      this.profileService.getUserProfile().on("value", userProfileSnapshot => {
-        this.userProfile = userProfileSnapshot.val();
-        console.log(this.userProfile);
-        console.log(userProfileSnapshot.val().birthDate);
-        this.birthDate = new Date(
-          userProfileSnapshot.val().birthDate
-        ).toISOString();
-      });
+      this.profileService
+        .getUserProfile()
+        .once("value", userProfileSnapshot => {
+          this.userProfile = userProfileSnapshot.val();
+          if (this.userProfile.birthDate) {
+            this.birthDate = new Date(
+              userProfileSnapshot.val().birthDate
+            ).toISOString();
+          }
+        });
     }
   }
 
@@ -45,13 +47,13 @@ export class ProfilePage implements OnInit {
         {
           type: "text",
           name: "firstName",
-          placeholder: "IL tuo Nome",
+          placeholder: "Il tuo Nome",
           value: this.userProfile.firstName
         },
         {
           type: "text",
           name: "lastName",
-          placeholder: "IL tuo Cognome",
+          placeholder: "Il tuo Cognome",
           value: this.userProfile.lastName
         }
       ],
@@ -71,12 +73,20 @@ export class ProfilePage implements OnInit {
   extract_date_from_data(d) {
     return d.split("T")[0].split("-");
   }
+
+  makeup_date(dateList: string[]) {
+    return {
+      year: Number(dateList[0]),
+      month: Number(dateList[1]),
+      day: Number(dateList[2])
+    };
+  }
   changedDate(d) {
     console.log(d);
   }
 
   updateDOB(birthDate: any): void {
-    console.log(birthDate);
+    birthDate = this.makeup_date(this.extract_date_from_data(birthDate));
     if (birthDate === undefined) {
       return;
     } else if (
@@ -87,11 +97,10 @@ export class ProfilePage implements OnInit {
       return;
     }
     const dateOfBirth: Date = new Date(
-      birthDate.year.value,
-      birthDate.month.value - 1,
-      birthDate.day.value
+      birthDate.year,
+      birthDate.month - 1,
+      birthDate.day + 1
     );
-    console.log(dateOfBirth);
     this.profileService.updateDOB(String(dateOfBirth));
   }
 

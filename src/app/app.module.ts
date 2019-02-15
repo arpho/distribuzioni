@@ -18,7 +18,7 @@ import { ItemModule } from "./modules/item/item.module";
   entryComponents: [],
   imports: [
     BrowserModule,
-    // ItemModule,
+     ItemModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     UserModule,
