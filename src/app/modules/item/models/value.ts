@@ -1,8 +1,9 @@
 export class Value {
-    label: string;
-    value: string | number;
+  label: string;
+  value: string | number;
 
-    constructor() {
-        this.label = 'not implemented yet';
-    }
+  constructor(value, label) {
+    this.label = label;
+    this.value = value;
+  }
 }

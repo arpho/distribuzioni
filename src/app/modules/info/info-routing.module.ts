@@ -4,7 +4,7 @@ import { AuthGuard } from "../user/services/authguard.service";
 
 const routes: Routes = [
   {
-    path: "info",
+    path: "realise",
     loadChildren: "./pages/info/info.module#InfoPageModule",
     canActivate: [AuthGuard]
   }

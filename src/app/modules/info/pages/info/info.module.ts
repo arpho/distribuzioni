@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Routes, RouterModule } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { InfoPage } from './info.page';
+import { InfoPage } from "./info.page";
+import { InfoRoutingModule } from "../../info-routing.module";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: InfoPage
   }
 ];
@@ -19,6 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
+    IonicModule.forRoot(),
     RouterModule.forChild(routes)
   ],
   declarations: [InfoPage]

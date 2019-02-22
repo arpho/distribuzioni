@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { InfoService } from "./services/info/info.service";
+import { InfoService } from "../../services/info/info.service";
 import { AlertController } from "@ionic/angular";
 
 @Component({
@@ -20,9 +20,8 @@ export class InfoPage implements OnInit {
   // barcodeScannerOptions: BarcodeScannerOptions;
 
   constructor(
-    public info: InfoService
-  ) // private barcodeScanner: BarcodeScanner
-  {}
+    public info: InfoService // private barcodeScanner: BarcodeScanner
+  ) {}
 
   scanCode() {}
 

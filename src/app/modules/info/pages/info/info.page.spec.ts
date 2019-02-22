@@ -1,18 +1,19 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { HttpClientModule } from "@angular/common/http";
+import { IonicStorageModule } from "@ionic/storage";
+import { InfoPage } from "./info.page";
 
-import { InfoPage } from './info.page';
-
-describe('InfoPage', () => {
+describe("InfoPage", () => {
   let component: InfoPage;
   let fixture: ComponentFixture<InfoPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InfoPage ],
+      declarations: [InfoPage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-    .compileComponents();
+      imports: [HttpClientModule, IonicStorageModule.forRoot()]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,7 +22,7 @@ describe('InfoPage', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
