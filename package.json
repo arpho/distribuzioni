@@ -1,6 +1,15 @@
 {
   "name": "distribuzioni",
-  "version": "0.0.4",
+  "version": "0.0.5",
+  "features": [
+    "gestione forme di pagamento",
+    "gestione fornitori",
+    "gestione categorie",
+    "gestione acquisti in progress"
+  ],
+  "newFeatures": [
+    "completed  implementation of volantinaggiModel"
+  ],
   "author": "Arpho",
   "scripts": {
     "ng": "ng",

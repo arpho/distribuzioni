@@ -1,4 +1,7 @@
-import { ItemModelInterface } from "../modules/item/models/itemModelInterface";
+import {
+  ItemModelInterface,
+  Genere
+} from "../modules/item/models/itemModelInterface";
 import { Value } from "../modules/item/models/value";
 
 export class VolantinaggiModel implements ItemModelInterface {
@@ -10,6 +13,21 @@ export class VolantinaggiModel implements ItemModelInterface {
   private volantini: Number;
   private locandine: Number;
   private manifesti: Number;
+  getEditPopup() {}
+
+  getCreatePopup() {}
+
+  aggregateAction() {}
+
+  serialize() {}
+
+  getElement() {
+    const genere: Genere = "o";
+    return { element: "volantinaggio", genere: genere };
+  }
+  getAggregate() {
+    return new Value("aggregato", "to be implemented");
+  }
 
   isArchived() {
     return this.archived;
