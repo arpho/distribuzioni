@@ -9,9 +9,11 @@ export interface ItemModelInterface {
   title: string;
   note: string;
   key: string;
-  archived: boolean;
+  quickActions?: { label: string; icon: string; action: AlertOptions }[];
+  archived?: boolean;
   getTitle(): Value;
   getNote(): Value;
+  build(item: {});
   isArchived(): boolean;
   archiveItem(b: boolean);
   getValue2(): Value;

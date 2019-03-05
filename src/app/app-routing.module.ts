@@ -23,7 +23,13 @@ const routes: Routes = [
    { path: 'reset-password', loadChildren: './modules/user/pages/reset-password/reset-password.module#ResetPasswordPageModule' },*/
 
   { path: "user", loadChildren: "./modules/user/user.module#UserModule" },
-  { path: "info", loadChildren: "./modules/info/info.module#InfoModule" }
+  { path: "info", loadChildren: "./modules/info/info.module#InfoModule" },
+  {
+    path: "distribuzione-detail/:key",
+    loadChildren:
+      "./pages/distribuzione-detail/distribuzione-detail.module#DistribuzioneDetailPageModule"
+  },
+  { path: 'distribuzione-create', loadChildren: './pages/distribuzione-create/distribuzione-create.module#DistribuzioneCreatePageModule' }
 ];
 
 @NgModule({
