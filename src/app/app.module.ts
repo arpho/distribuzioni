@@ -12,13 +12,15 @@ import { UserModule } from "./modules/user/user.module";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { ItemModule } from "./modules/item/item.module";
+import { DynamicFormModule } from "./modules/dynamic-form/dynamic-form.module";
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    DynamicFormModule,
     BrowserModule,
-     ItemModule,
+    ItemModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     UserModule,

@@ -1,11 +1,19 @@
-import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ɵConsole } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+  ɵConsole
+} from "@angular/core";
+import { FormGroup, FormControl } from "@angular/forms";
 
-import { QuestionBase } from '../../models/question-base';
+import { QuestionBase } from "../../models/question-base";
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question-form-component.html',
+  selector: "app-question",
+  templateUrl: "./question-form-component.html",
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuestionFormComponent implements OnInit {
@@ -14,13 +22,19 @@ export class QuestionFormComponent implements OnInit {
   @Input() form: FormGroup;
 
   ngOnInit() {
-    this.value = (this.question) ? this.question.value : undefined;
-    this.form = (this.form) ? this.form : new FormGroup({ // I need an instance of formgroup for run the tests
-      name: new FormControl('turiddu'),
-      age: new FormControl('20')
-    });
+    console.log("question", this.question);
+    this.value = this.question ? this.question.value : undefined;
+    this.form = this.form
+      ? this.form
+      : new FormGroup({
+          // I need an instance of formgroup for run the tests
+          name: new FormControl("turiddu"),
+          age: new FormControl("20")
+        });
   }
-  get isValid() { return this.form.controls[this.question.key].valid; }
+  get isValid() {
+    return this.form.controls[this.question.key].valid;
+  }
   get getValue() {
     return this.form.get(this.question.key).value;
   }

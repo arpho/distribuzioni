@@ -19,7 +19,18 @@ export class VolantinaggiModel implements ItemModelInterface {
 
   aggregateAction() {}
 
-  serialize() {}
+  serialize() {
+    return {
+      key: this.key,
+      title: this.title,
+      note: this.note,
+      archived: this.archived,
+      volantini: this.volantini,
+      locandine: this.locandine,
+      manifesti: this.manifesti,
+      periodo: this.periodo
+    };
+  }
 
   getElement() {
     const genere: Genere = "o";
@@ -35,6 +46,13 @@ export class VolantinaggiModel implements ItemModelInterface {
 
   getNote() {
     return new Value("nota", this.note);
+  }
+
+  build(item: Object) {
+    const loader = ([Key, value]) => {
+      this[Key] = value;
+    };
+    Object.entries(item).forEach(loader);
   }
 
   getTitle() {

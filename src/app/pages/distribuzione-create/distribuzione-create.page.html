@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <app-dynamic-form
+    [questions]="questions"
+    (interactiveSubmit)="filter($event)"
+    (singleSubmit)="submit($event)"
+  ></app-dynamic-form>
+</ion-content>
