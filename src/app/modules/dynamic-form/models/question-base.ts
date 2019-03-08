@@ -22,7 +22,6 @@ export class QuestionBase<T> {
       iconFalse?: String;
     } = {}
   ) {
-    console.log("question base", options);
     this.value = options["value"];
     this.key = options.key || "";
     this.label = options.label || "";

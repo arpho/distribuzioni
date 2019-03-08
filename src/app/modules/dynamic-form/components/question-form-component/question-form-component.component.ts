@@ -22,7 +22,6 @@ export class QuestionFormComponent implements OnInit {
   @Input() form: FormGroup;
 
   ngOnInit() {
-    console.log("question", this.question);
     this.value = this.question ? this.question.value : undefined;
     this.form = this.form
       ? this.form

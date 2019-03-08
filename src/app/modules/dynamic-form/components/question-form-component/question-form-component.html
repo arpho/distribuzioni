@@ -8,6 +8,14 @@
       [id]="question.key"
       [type]="question.type"
     />
+    <div *ngSwitchCase="'datebox'">
+      <ion-datetime
+        [formControlName]="question.key"
+        [(ngModel)]="value"
+        [id]="question.key"
+      >
+      </ion-datetime>
+    </div>
     <div *ngSwitchCase="'switchBox'">
       <p class="switchText">
         {{ getValue ? question.labelTrue : question.labelFalse }}
