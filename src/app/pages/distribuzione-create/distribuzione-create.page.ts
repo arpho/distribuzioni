@@ -3,6 +3,8 @@ import { QuestionBase } from "src/app/modules/item/models/question-base";
 import { TextboxQuestion } from "src/app/modules/item/models/question-textbox";
 import { SwitchQuestion } from "src/app/modules/item/models/question-switch";
 import { DateQuestion } from "src/app/modules/dynamic-form/models/question-date";
+import { VolantinaggiModel } from "src/app/models/volantinaggi";
+import { DistribuzioniService } from "src/app/services/distribuzioni-service";
 
 @Component({
   selector: "app-distribuzione-create",
@@ -12,15 +14,26 @@ import { DateQuestion } from "src/app/modules/dynamic-form/models/question-date"
 export class DistribuzioneCreatePage implements OnInit {
   title: string;
   questions: any;
+  submitText: String;
 
-  constructor() {}
+  constructor(public Distribuzioni: DistribuzioniService) {}
   filter(ev) {}
   submit(ev) {
-    console.log(ev);
+    console.log("submit", ev);
+    const distribuzione = new VolantinaggiModel(ev);
+    console.log("creating volantinaggio", distribuzione);
+    this.Distribuzioni.createItem(distribuzione)
+      .then(v => {
+        console.log("created", v);
+      })
+      .catch(e => {
+        console.log("error", e);
+      });
   }
 
   ngOnInit() {
     const today = new Date();
+    this.submitText = "crea";
     const myFormat = (d: Date) => {
       const mm = d.getMonth() + 1;
       const dd = d.getDate();
@@ -55,6 +68,19 @@ export class DistribuzioneCreatePage implements OnInit {
         required: true,
         value: myFormat(today), // "2019-01-02",
         order: 4
+      }),
+      new DateQuestion({
+        key: "endDate",
+        label: "Data di fine",
+        required: true,
+        value: myFormat(today), // "2019-01-02",
+        order: 5
+      }),
+      new TextboxQuestion({
+        key: "note",
+        label: "Note",
+        value: "",
+        order: 6
       })
     ];
     this.questions = questions;

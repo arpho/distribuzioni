@@ -7,6 +7,7 @@
 <ion-content padding>
   <app-dynamic-form
     [questions]="questions"
+    [submitText]="submitText"
     (interactiveSubmit)="filter($event)"
     (singleSubmit)="submit($event)"
   ></app-dynamic-form>

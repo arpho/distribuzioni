@@ -15,7 +15,6 @@ export class ProfileService {
       if (user) {
         this.currentUser = user;
         this.userProfile = firebase.database().ref(`/userProfile/${user.uid}`);
-        console.log(user);
       }
     });
   }
@@ -28,8 +27,14 @@ export class ProfileService {
     return this.userProfile.update({ firstName, lastName });
   }
 
-  updateDOB(birthDate: string): Promise<any> {
-    return this.userProfile.update({ birthDate });
+  updateDOB(birthDate: Date): Promise<any> {
+    return this.userProfile.update({
+      birthDate: {
+        year: birthDate.getFullYear(),
+        month: birthDate.getMonth(),
+        day: birthDate.getDate()
+      }
+    });
   }
 
   updateEmail(newEmail: string, password: string): Promise<any> {

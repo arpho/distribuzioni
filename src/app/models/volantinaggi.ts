@@ -5,6 +5,23 @@ import {
 import { Value } from "../modules/item/models/value";
 
 export class VolantinaggiModel implements ItemModelInterface {
+  constructor(model?: {
+    title: string;
+    archived: boolean;
+    startDate: string;
+    endDate: string;
+    note: string;
+  }) {
+    if (model) {
+      this.title = model.title;
+      this.archived = model.archived;
+      this.periodo = {
+        inizio: new Date(model.startDate),
+        fine: new Date(model.endDate)
+      };
+      this.note = model.note;
+    }
+  }
   private periodo: { inizio: Date; fine: Date };
   public title: string;
   public note: string;
@@ -19,16 +36,25 @@ export class VolantinaggiModel implements ItemModelInterface {
 
   aggregateAction() {}
 
+  formatDate(d: Date) {
+    return {
+      year: d.getFullYear(),
+      month: d.getMonth(),
+      day: d.getDate()
+    };
+  }
+
   serialize() {
     return {
-      key: this.key,
+      // key: this.key,
       title: this.title,
       note: this.note,
-      archived: this.archived,
-      volantini: this.volantini,
-      locandine: this.locandine,
-      manifesti: this.manifesti,
-      periodo: this.periodo
+      archived: this.archived || false,
+      volantini: this.volantini || 0,
+      locandine: this.locandine || 0,
+      manifesti: this.manifesti || 0,
+      inizio: this.formatDate(this.periodo.inizio),
+      fine: this.formatDate(this.periodo.fine)
     };
   }
 

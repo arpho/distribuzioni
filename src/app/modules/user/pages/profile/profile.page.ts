@@ -26,9 +26,11 @@ export class ProfilePage implements OnInit {
         .once("value", userProfileSnapshot => {
           this.userProfile = userProfileSnapshot.val();
           if (this.userProfile.birthDate) {
-            this.birthDate = new Date(
-              userProfileSnapshot.val().birthDate
-            ).toISOString();
+            var dob = new Date();
+            dob.setFullYear(this.userProfile.birthDate.year);
+            dob.setMonth(Number(this.userProfile.birthDate.month));
+            dob.setDate(this.userProfile.birthDate.day);
+            this.birthDate = dob.toISOString();
           }
         });
     }
@@ -85,7 +87,7 @@ export class ProfilePage implements OnInit {
     console.log(d);
   }
 
-  updateDOB(birthDate: any): void {
+  updateDOB(birthDate: any, ev): void {
     birthDate = this.makeup_date(this.extract_date_from_data(birthDate));
     if (birthDate === undefined) {
       return;
@@ -99,9 +101,9 @@ export class ProfilePage implements OnInit {
     const dateOfBirth: Date = new Date(
       birthDate.year,
       birthDate.month - 1,
-      birthDate.day + 1
+      birthDate.day
     );
-    this.profileService.updateDOB(String(dateOfBirth));
+    this.profileService.updateDOB(dateOfBirth);
   }
 
   async updateEmail(): Promise<void> {

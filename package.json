@@ -1,11 +1,11 @@
 {
   "name": "distribuzioni",
-  "version": "0.0.5.1",
+  "version": "0.0.6.1",
   "features": [
     "gestione delle distribuzioni"
   ],
   "newFeatures": [
-    "serialized volantinaggiModel"
+    "creazione distribuzioni"
   ],
   "author": "Arpho",
   "scripts": {
