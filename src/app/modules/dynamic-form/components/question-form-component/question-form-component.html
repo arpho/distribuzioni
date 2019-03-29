@@ -9,11 +9,7 @@
       [type]="question.type"
     />
     <div *ngSwitchCase="'datebox'">
-      <ion-datetime
-        [formControlName]="question.key"
-        [(ngModel)]="value"
-        [id]="question.key"
-      >
+      <ion-datetime [formControlName]="question.key" [id]="question.key">
       </ion-datetime>
     </div>
     <div *ngSwitchCase="'switchBox'">
@@ -25,7 +21,6 @@
       ></ion-icon>
       <ion-toggle
         [formControlName]="question.key"
-        [(ngModel)]="value"
         [id]="question.key"
       ></ion-toggle>
     </div>

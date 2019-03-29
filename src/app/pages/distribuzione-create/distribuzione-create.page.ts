@@ -22,13 +22,13 @@ export class DistribuzioneCreatePage implements OnInit {
     console.log("submit", ev);
     const distribuzione = new VolantinaggiModel(ev);
     console.log("creating volantinaggio", distribuzione);
-    this.Distribuzioni.createItem(distribuzione)
+    /* this.Distribuzioni.createItem(distribuzione)
       .then(v => {
         console.log("created", v);
       })
       .catch(e => {
         console.log("error", e);
-      });
+      }); */
   }
 
   ngOnInit() {
