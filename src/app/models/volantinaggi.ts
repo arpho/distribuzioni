@@ -3,6 +3,7 @@ import {
   Genere
 } from "../modules/item/models/itemModelInterface";
 import { Value } from "../modules/item/models/value";
+import { ItemServiceInterface } from "../modules/item/models/ItemServiceInterface";
 
 export class VolantinaggiModel implements ItemModelInterface {
   constructor(model?: {
@@ -68,6 +69,23 @@ export class VolantinaggiModel implements ItemModelInterface {
 
   isArchived() {
     return this.archived;
+  }
+
+  load(key: string, service: ItemServiceInterface) {
+    service.getItem(key).on("value", value => {
+      Object.entries(value.val()).forEach(v => {
+        this[v[0]] = v[1];
+      });
+
+      this.periodo = {
+        inizio: new Date(
+          this["inizio"].year,
+          this["inizio"].month,
+          this["inizio"].day
+        ),
+        fine: new Date(this["fine"].year, this["fine"].month, this["fine"].day)
+      };
+    });
   }
 
   getNote() {

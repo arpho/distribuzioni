@@ -14,6 +14,7 @@ export interface ItemModelInterface {
   getTitle(): Value;
   getNote(): Value;
   build(item: {});
+  load(key: string, service: ItemServiceInterface);
   isArchived(): boolean;
   archiveItem(b: boolean);
   getValue2(): Value;
