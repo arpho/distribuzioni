@@ -29,7 +29,11 @@ const routes: Routes = [
     loadChildren:
       "./pages/distribuzione-detail/distribuzione-detail.module#DistribuzioneDetailPageModule"
   },
-  { path: 'distribuzione-create', loadChildren: './pages/distribuzione-create/distribuzione-create.module#DistribuzioneCreatePageModule' }
+  {
+    path: "distribuzione-create",
+    loadChildren:
+      "./pages/distribuzione-create/distribuzione-create.module#DistribuzioneCreatePageModule"
+  }
 ];
 
 @NgModule({

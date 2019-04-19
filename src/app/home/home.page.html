@@ -11,7 +11,7 @@
     </ion-buttons>
 
     <ion-title>
-      Home
+      Lista distribuzioni
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -29,4 +29,8 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  <app-page-items-list
+    [service]="distributions"
+    [items_list]="distributionsList"
+  ></app-page-items-list>
 </ion-content>

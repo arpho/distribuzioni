@@ -1,4 +1,7 @@
 <ion-item>
-  <p slot="start">{{Item?.getTitle().value}}</p>
-  <p slot="start" class="note">{{Item?.getNote().value}}</p>
+  <p slot="start">{{ Item?.getTitle().value }}</p>
+  <p slot="start" class="note">{{ Item?.getNote().value }}</p>
+  <p class="value2">
+    {{ Item?.getValue2().label }}:{{ Item?.getValue2().value }}
+  </p>
 </ion-item>

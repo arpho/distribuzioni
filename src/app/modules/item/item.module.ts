@@ -1,31 +1,28 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
-import { MyItemModule } from './components/item/item.component';
-import { ItemsListComponent } from './components/items-list/items-list.component';
-import { FilterItemsPipe } from './pipes/filter-items.pipe';
-import { ReactiveFormsModule } from '@angular/forms';
-import { PageItemComponent } from './components/page-item/page-item.component';
-import { PageItemsListComponent } from './components/page-items-list/page-items-list.page';
+import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { IonicModule } from "@ionic/angular";
+import { MyItemComponent } from "./components/item/item.component";
+import { ItemsListComponent } from "./components/items-list/items-list.component";
+import { FilterItemsPipe } from "./pipes/filter-items.pipe";
+import { ReactiveFormsModule } from "@angular/forms";
+import { PageItemComponent } from "./components/page-item/page-item.component";
+import { PageItemsListComponent } from "./components/page-items-list/page-items-list.page";
 
 @NgModule({
   declarations: [
-    MyItemModule,
+    MyItemComponent,
     ItemsListComponent,
     FilterItemsPipe,
     PageItemComponent,
-    PageItemsListComponent,
+    PageItemsListComponent
   ],
-  imports: [
-    CommonModule,
-    IonicModule.forRoot(),
-    ReactiveFormsModule
-  ],
+  imports: [CommonModule, IonicModule.forRoot(), ReactiveFormsModule],
   exports: [
-    MyItemModule,
+    MyItemComponent,
     ItemsListComponent,
     PageItemComponent,
-    PageItemsListComponent,
-  ]
+    PageItemsListComponent
+  ],
+  schemas: [NO_ERRORS_SCHEMA]
 })
-export class ItemModule { }
+export class ItemModule {}

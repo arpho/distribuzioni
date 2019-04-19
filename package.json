@@ -1,12 +1,12 @@
 {
   "name": "distribuzioni",
-  "version": "0.0.6.2",
+  "version": "0.0.6.3",
   "features": [
     "gestione delle distribuzioni"
   ],
   "newFeatures": [
     "creazione distribuzioni",
-    "caricamento lista distribuzioni"
+    "visualixzzazione lista distribuzioni"
   ],
   "author": "Arpho",
   "scripts": {

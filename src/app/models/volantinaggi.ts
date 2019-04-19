@@ -31,7 +31,9 @@ export class VolantinaggiModel implements ItemModelInterface {
   private volantini: Number;
   private locandine: Number;
   private manifesti: Number;
-  getEditPopup() {}
+  getEditPopup() {
+    return "/distribuzione-detail";
+  }
 
   getCreatePopup() {}
 
@@ -85,6 +87,7 @@ export class VolantinaggiModel implements ItemModelInterface {
         ),
         fine: new Date(this["fine"].year, this["fine"].month, this["fine"].day)
       };
+      this.key = key;
     });
   }
 
@@ -108,17 +111,14 @@ export class VolantinaggiModel implements ItemModelInterface {
   }
 
   getValue2() {
-    return new Value("volantini acquiastati", this.volantini);
+    return new Value(this.volantini, "volantini stamp");
   }
 
   getValue3() {
-    return new Value("locandine acquistate", this.locandine);
+    return new Value(this.locandine, "locandine acquistate");
   }
 
   getValue4() {
-    return new Value(
-      "manifesti",
-      this.manifesti || "non sono stati affissi manifesti"
-    );
+    return new Value(this.manifesti || 0, "manifesti");
   }
 }
