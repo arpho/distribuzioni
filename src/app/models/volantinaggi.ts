@@ -75,10 +75,11 @@ export class VolantinaggiModel implements ItemModelInterface {
 
   load(key: string, service: ItemServiceInterface) {
     service.getItem(key).on("value", value => {
-      Object.entries(value.val()).forEach(v => {
-        this[v[0]] = v[1];
-      });
-
+      if (value.val()) {
+        Object.entries(value.val()).forEach(v => {
+          this[v[0]] = v[1];
+        });
+      }
       this.periodo = {
         inizio: new Date(
           this["inizio"].year,

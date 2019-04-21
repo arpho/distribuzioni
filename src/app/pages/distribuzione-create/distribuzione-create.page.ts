@@ -5,6 +5,7 @@ import { SwitchQuestion } from "src/app/modules/item/models/question-switch";
 import { DateQuestion } from "src/app/modules/dynamic-form/models/question-date";
 import { VolantinaggiModel } from "src/app/models/volantinaggi";
 import { DistribuzioniService } from "src/app/services/distribuzioni-service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-distribuzione-create",
@@ -16,19 +17,23 @@ export class DistribuzioneCreatePage implements OnInit {
   questions: any;
   submitText: String;
 
-  constructor(public Distribuzioni: DistribuzioniService) {}
+  constructor(
+    public Distribuzioni: DistribuzioniService,
+    public router: Router
+  ) {}
   filter(ev) {}
   submit(ev) {
     console.log("submit", ev);
     const distribuzione = new VolantinaggiModel(ev);
     console.log("creating volantinaggio", distribuzione);
-    /* this.Distribuzioni.createItem(distribuzione)
+    this.Distribuzioni.createItem(distribuzione)
       .then(v => {
         console.log("created", v);
+        this.router.navigate(["/home"]);
       })
       .catch(e => {
         console.log("error", e);
-      }); */
+      });
   }
 
   ngOnInit() {
