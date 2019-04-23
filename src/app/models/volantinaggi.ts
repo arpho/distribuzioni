@@ -5,7 +5,7 @@ import {
 import { Value } from "../modules/item/models/value";
 import { ItemServiceInterface } from "../modules/item/models/ItemServiceInterface";
 
-export class VolantinaggiModel implements ItemModelInterface {
+export class LeafletingModel implements ItemModelInterface {
   constructor(model?: {
     title: string;
     archived: boolean;
@@ -23,7 +23,7 @@ export class VolantinaggiModel implements ItemModelInterface {
       this.note = model.note;
     }
   }
-  private periodo: { inizio: Date; fine: Date };
+  public periodo: { inizio: Date; fine: Date };
   public title: string;
   public note: string;
   public key: string;
@@ -74,22 +74,28 @@ export class VolantinaggiModel implements ItemModelInterface {
   }
 
   load(key: string, service: ItemServiceInterface) {
-    service.getItem(key).on("value", value => {
-      if (value.val()) {
-        Object.entries(value.val()).forEach(v => {
-          this[v[0]] = v[1];
-        });
-      }
-      this.periodo = {
-        inizio: new Date(
-          this["inizio"].year,
-          this["inizio"].month,
-          this["inizio"].day
-        ),
-        fine: new Date(this["fine"].year, this["fine"].month, this["fine"].day)
-      };
-      this.key = key;
-    });
+    if (service.getItem(key)) {
+      service.getItem(key).on("value", value => {
+        if (value.val()) {
+          Object.entries(value.val()).forEach(v => {
+            this[v[0]] = v[1];
+          });
+        }
+        this.periodo = {
+          inizio: new Date(
+            this["inizio"].year,
+            this["inizio"].month,
+            this["inizio"].day
+          ),
+          fine: new Date(
+            this["fine"].year,
+            this["fine"].month,
+            this["fine"].day
+          )
+        };
+        this.key = key;
+      });
+    }
   }
 
   getNote() {

@@ -3,7 +3,7 @@ import { QuestionBase } from "src/app/modules/item/models/question-base";
 import { TextboxQuestion } from "src/app/modules/item/models/question-textbox";
 import { SwitchQuestion } from "src/app/modules/item/models/question-switch";
 import { DateQuestion } from "src/app/modules/dynamic-form/models/question-date";
-import { VolantinaggiModel } from "src/app/models/volantinaggi";
+import { LeafletingModel } from "src/app/models/volantinaggi";
 import { DistribuzioniService } from "src/app/services/distribuzioni-service";
 import { Router } from "@angular/router";
 
@@ -24,7 +24,7 @@ export class DistribuzioneCreatePage implements OnInit {
   filter(ev) {}
   submit(ev) {
     console.log("submit", ev);
-    const distribuzione = new VolantinaggiModel(ev);
+    const distribuzione = new LeafletingModel(ev);
     console.log("creating volantinaggio", distribuzione);
     this.Distribuzioni.createItem(distribuzione)
       .then(v => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { VolantinaggiModel } from "../models/volantinaggi";
+import { LeafletingModel } from "../models/volantinaggi";
 import { DistribuzioniService } from "../services/distribuzioni-service";
 import { ItemModelInterface } from "../modules/item/models/itemModelInterface";
 import { ItemModule } from "../modules/item/item.module";
@@ -10,7 +10,7 @@ import { ItemModule } from "../modules/item/item.module";
   styleUrls: ["home.page.scss"]
 })
 export class HomePage implements OnInit {
-  public distributionsList = Array<VolantinaggiModel>();
+  public distributionsList = Array<LeafletingModel>();
   public filterFunction: (item: ItemModelInterface) => Boolean;
   constructor(public distributions: DistribuzioniService) {}
   ngOnInit() {
@@ -19,10 +19,9 @@ export class HomePage implements OnInit {
         // console.log("distribuzioni", snapshot);
         this.distributionsList = [];
         snapshot.forEach(snap => {
-          const distribuition = new VolantinaggiModel();
+          const distribuition = new LeafletingModel();
           distribuition.load(snap.key, this.distributions);
           this.distributionsList.push(distribuition);
-          console.log(this.distributionsList, "distribuzione");
         });
       });
     }
