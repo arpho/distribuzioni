@@ -1,18 +1,19 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ActivatedRoute, Router } from "@angular/router";
+import { DistribuzioneDetailPage } from "./distribuzione-detail.page";
+import { RouterTestingModule } from "@angular/router/testing";
 
-import { DistribuzioneDetailPage } from './distribuzione-detail.page';
-
-describe('DistribuzioneDetailPage', () => {
+describe("DistribuzioneDetailPage", () => {
   let component: DistribuzioneDetailPage;
   let fixture: ComponentFixture<DistribuzioneDetailPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DistribuzioneDetailPage ],
+      declarations: [DistribuzioneDetailPage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-    .compileComponents();
+      imports: [RouterTestingModule.withRoutes([])]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,7 +22,7 @@ describe('DistribuzioneDetailPage', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
