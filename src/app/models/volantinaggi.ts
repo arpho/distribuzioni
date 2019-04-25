@@ -13,7 +13,6 @@ export class LeafletingModel implements ItemModelInterface {
     endDate: string;
     note: string;
   }) {
-    this.periodo = { inizio: new Date(), fine: new Date() };
     if (model) {
       this.title = model.title;
       this.archived = model.archived;
@@ -22,6 +21,8 @@ export class LeafletingModel implements ItemModelInterface {
         fine: new Date(model.endDate)
       };
       this.note = model.note;
+    } else {
+      this.periodo = { inizio: new Date(), fine: new Date() };
     }
   }
   public periodo: { inizio: Date; fine: Date };
@@ -48,6 +49,15 @@ export class LeafletingModel implements ItemModelInterface {
     };
   }
 
+  updateItem(newItem: any /*
+   carica le modifiche nel modello
+  */) {
+    this.title = newItem["title"];
+    this.note = newItem["note"];
+    this.archived = newItem["archived"];
+    this.periodo.inizio = new Date(newItem["startDate"]);
+    this.periodo.fine = new Date(newItem["endDate"]);
+  }
   serialize() {
     return {
       // key: this.key,

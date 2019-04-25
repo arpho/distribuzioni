@@ -34,8 +34,6 @@ export class DistribuzioniService implements ItemServiceInterface {
   }
 
   createItem(item: ItemModelInterface) {
-    console.log("creeatring item", item);
-
     return this.leafletingListRef.push(item.serialize());
   }
 

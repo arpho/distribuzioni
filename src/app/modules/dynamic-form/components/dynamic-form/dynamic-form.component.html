@@ -7,6 +7,17 @@
     <div class="form-row">
       <button type="submit" [disabled]="!form?.valid">{{ submitText }}</button>
     </div>
+
+    <ion-fab vertical="middle" horizontal="start">
+      <button
+        type="submit"
+        [disabled]="!form?.valid"
+        size="small"
+        href="distribuzione-create"
+      >
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </button>
+    </ion-fab>
   </form>
 
   <div *ngIf="payLoad" class="form-row"></div>

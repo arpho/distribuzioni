@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DistribuzioneDetailPage } from "./distribuzione-detail.page";
 import { RouterTestingModule } from "@angular/router/testing";
+import { ToastController } from "@ionic/angular";
 
 describe("DistribuzioneDetailPage", () => {
   let component: DistribuzioneDetailPage;
@@ -12,7 +13,8 @@ describe("DistribuzioneDetailPage", () => {
     TestBed.configureTestingModule({
       declarations: [DistribuzioneDetailPage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [RouterTestingModule.withRoutes([])]
+      imports: [RouterTestingModule.withRoutes([])],
+      providers: [ToastController]
     }).compileComponents();
   }));
 

@@ -6,6 +6,7 @@ import { DateQuestion } from "src/app/modules/dynamic-form/models/question-date"
 import { LeafletingModel } from "src/app/models/volantinaggi";
 import { DistribuzioniService } from "src/app/services/distribuzioni-service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ToastController } from "@ionic/angular";
 
 @Component({
   selector: "app-distribuzione-detail",
@@ -20,23 +21,35 @@ export class DistribuzioneDetailPage implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
-    public service: DistribuzioniService
+    public service: DistribuzioniService,
+    public router: Router,
+    private toastCtrl: ToastController
   ) {
     this.title = "Dettaglio  distribuzione";
   }
   filter(ev) {}
   submit(ev) {
-    console.log("submit", ev);
-    const leafleting_key = new LeafletingModel(ev);
-    console.log("creating volantinaggio", leafleting_key);
-    this.currentLeafleting = new LeafletingModel();
-    /* this.Distribuzioni.createItem(distribuzione)
+    this.currentLeafleting.updateItem(ev);
+
+    this.service
+      .updateItem(this.currentLeafleting)
       .then(v => {
-        console.log("created", v);
+        this.presentToast(" volantinaggio modificato");
+        this.router.navigate(["/home"]);
       })
       .catch(e => {
         console.log("error", e);
-      }); */
+        this.presentToast("si è verificato un errore riprova");
+        this.router.navigate(["/home"]);
+      });
+  }
+
+  presentToast(text: string) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: "top"
+    });
   }
 
   ngOnInit() {
