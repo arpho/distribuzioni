@@ -13,6 +13,7 @@ export class LeafletingModel implements ItemModelInterface {
     endDate: string;
     note: string;
   }) {
+    this.periodo = { inizio: new Date(), fine: new Date() };
     if (model) {
       this.title = model.title;
       this.archived = model.archived;
