@@ -13,6 +13,7 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { ItemModule } from "./modules/item/item.module";
 import { DynamicFormModule } from "./modules/dynamic-form/dynamic-form.module";
+import { ImagePicker } from "@ionic-native/image-picker/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { DynamicFormModule } from "./modules/dynamic-form/dynamic-form.module";
   providers: [
     StatusBar,
     SplashScreen,
+    ImagePicker,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
 

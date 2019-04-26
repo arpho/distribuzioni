@@ -4,19 +4,15 @@
       <app-question [question]="question" [form]="form"></app-question>
     </div>
 
-    <div class="form-row">
-      <button type="submit" [disabled]="!form?.valid">{{ submitText }}</button>
-    </div>
-
-    <ion-fab vertical="middle" horizontal="start">
-      <button
+    <ion-fab vertical="middle" horizontal="end">
+      <ion-button
         type="submit"
         [disabled]="!form?.valid"
         size="small"
         href="distribuzione-create"
       >
         <ion-icon name="checkmark-circle"></ion-icon>
-      </button>
+      </ion-button>
     </ion-fab>
   </form>
 

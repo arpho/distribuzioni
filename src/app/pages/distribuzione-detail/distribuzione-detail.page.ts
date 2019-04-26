@@ -7,6 +7,7 @@ import { LeafletingModel } from "src/app/models/volantinaggi";
 import { DistribuzioniService } from "src/app/services/distribuzioni-service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastController } from "@ionic/angular";
+import { ImagePicker } from "@ionic-native/image-picker/ngx";
 
 @Component({
   selector: "app-distribuzione-detail",
@@ -16,11 +17,14 @@ import { ToastController } from "@ionic/angular";
 export class DistribuzioneDetailPage implements OnInit {
   title: string;
   questions: any;
+  text: string;
   submitText: String;
   currentLeafleting: LeafletingModel;
+  options: any;
 
   constructor(
     public route: ActivatedRoute,
+    private imagePicker: ImagePicker,
     public service: DistribuzioniService,
     public router: Router,
     private toastCtrl: ToastController
@@ -50,6 +54,18 @@ export class DistribuzioneDetailPage implements OnInit {
       duration: 3000,
       position: "top"
     });
+  }
+
+  pick() {
+    this.imagePicker.getPictures(this.options).then(
+      results => {
+        for (var i = 0; i < results.length; i++) {
+          console.log("Image URI: " + results[i]);
+          this.text = "Image URI: " + results[i];
+        }
+      },
+      err => {}
+    );
   }
 
   ngOnInit() {
