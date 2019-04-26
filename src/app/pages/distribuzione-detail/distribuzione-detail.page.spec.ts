@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { DistribuzioneDetailPage } from "./distribuzione-detail.page";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ToastController } from "@ionic/angular";
+import { ImagePicker } from "@ionic-native/image-picker/ngx";
 
 describe("DistribuzioneDetailPage", () => {
   let component: DistribuzioneDetailPage;
@@ -14,7 +15,7 @@ describe("DistribuzioneDetailPage", () => {
       declarations: [DistribuzioneDetailPage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [RouterTestingModule.withRoutes([])],
-      providers: [ToastController]
+      providers: [ToastController, ImagePicker]
     }).compileComponents();
   }));
 

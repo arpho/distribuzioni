@@ -14,17 +14,21 @@ import { environment } from "../environments/environment";
 import { ItemModule } from "./modules/item/item.module";
 import { DynamicFormModule } from "./modules/dynamic-form/dynamic-form.module";
 import { ImagePicker } from "@ionic-native/image-picker/ngx";
+import { InfoModule } from "./modules/info/info.module";
+import { IonicStorageModule } from "@ionic/storage";
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     DynamicFormModule,
+    IonicStorageModule.forRoot(),
     BrowserModule,
     ItemModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     UserModule,
+    InfoModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production
     })

@@ -21,7 +21,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    IonicModule.forRoot(),
+    IonicModule,
     RouterModule.forChild(routes)
   ],
   declarations: [InfoPage]

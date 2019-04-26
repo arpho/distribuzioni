@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { Router } from "@angular/router";
 import { DistribuzioneCreatePage } from "./distribuzione-create.page";
 import { RouterTestingModule } from "@angular/router/testing";
+import { ImagePicker } from "@ionic-native/image-picker/ngx";
 
 describe("DistribuzioneCreatePage", () => {
   let component: DistribuzioneCreatePage;
@@ -12,7 +13,8 @@ describe("DistribuzioneCreatePage", () => {
     TestBed.configureTestingModule({
       declarations: [DistribuzioneCreatePage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [RouterTestingModule.withRoutes([])]
+      imports: [RouterTestingModule.withRoutes([])],
+      providers: [ImagePicker]
     }).compileComponents();
   }));
 

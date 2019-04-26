@@ -48,7 +48,10 @@ export class DistribuzioneCreatePage implements OnInit {
           this.text = "Image URI: " + results[i];
         }
       },
-      err => {}
+      err => {
+        console.log(err);
+        this.text = err;
+      }
     );
   }
 

@@ -64,7 +64,9 @@ export class DistribuzioneDetailPage implements OnInit {
           this.text = "Image URI: " + results[i];
         }
       },
-      err => {}
+      err => {
+        this.text = err;
+      }
     );
   }
 
