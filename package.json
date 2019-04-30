@@ -1,13 +1,13 @@
 {
   "name": "distribuzioni",
-  "version": "0.0.6.8",
+  "version": "0.0.6.9",
   "features": [
     "modifica volantinaggi"
   ],
   "newFeatures": [
     "creazione distribuzioni",
     "visualixzzazione dettaglio volantinaggio",
-    "refactored info to navigate"
+    "refactored navigation to info"
   ],
   "author": "Arpho",
   "scripts": {
