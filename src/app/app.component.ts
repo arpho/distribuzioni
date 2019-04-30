@@ -22,7 +22,8 @@ export class AppComponent {
       title: "List",
       url: "/list",
       icon: "list"
-    }
+    },
+    { title: "info", url: "/info/release", icon: "information-circle-outline" }
   ];
 
   constructor(
@@ -43,12 +44,17 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    this.info.areThereNews().then(news => {
+    /* this.info.areThereNews().then(news => {
       if (news > 0) {
         this.router.navigateByUrl("info/release");
       } else {
         this.router.navigateByUrl("home");
       }
+    });*/
+
+    this.info.navigateTo().then(path => {
+      console.log("path to ", path);
+      this.router.navigateByUrl(path);
     });
   }
 }
