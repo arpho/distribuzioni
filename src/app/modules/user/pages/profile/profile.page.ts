@@ -17,7 +17,9 @@ export class ProfilePage implements OnInit {
     private authService: AuthService,
     private profileService: ProfileService,
     private router: Router
-  ) {}
+  ) {
+    console.log("profile");
+  }
 
   ngOnInit() {
     if (this.profileService.getUserProfile()) {

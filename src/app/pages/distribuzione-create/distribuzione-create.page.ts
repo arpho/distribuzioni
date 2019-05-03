@@ -25,7 +25,9 @@ export class DistribuzioneCreatePage implements OnInit {
     private imagePicker: ImagePicker,
     public router: Router
   ) {}
+
   filter(ev) {}
+
   submit(ev) {
     console.log("submit", ev);
     const distribuzione = new LeafletingModel(ev);

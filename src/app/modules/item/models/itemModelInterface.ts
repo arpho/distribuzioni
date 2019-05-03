@@ -7,7 +7,7 @@ export type Genere = "o" | "a";
 
 export interface ItemModelInterface {
   title: string;
-  note: string;
+  note?: string;
   key: string;
   quickActions?: { label: string; icon: string; action: AlertOptions }[];
   archived?: boolean;
@@ -15,8 +15,9 @@ export interface ItemModelInterface {
   getNote(): Value;
   build(item: {});
   load(key: string, service: ItemServiceInterface);
-  isArchived(): boolean;
-  archiveItem(b: boolean);
+  isArchived?(): boolean;
+  archiveItem?(b: boolean);
+  isArchivable?(): boolean;
   getValue2(): Value;
   getValue3(): Value;
   getValue4(): Value;
@@ -25,8 +26,10 @@ export interface ItemModelInterface {
 
   /**ritorna l'etichetta e il valore da visualizzare del campo aggregato **/
   getAggregate(): Value;
-  aggregateAction(): any | void;
-  serialize();
+  aggregateAction?(): any | void;
+  serialize /*
+  serialize the model for storing in firebase
+  */();
   getElement(): { element: string; genere: Genere };
 
   /**ritorna il nome del tipo di elemento

@@ -28,9 +28,7 @@ export class DistribuzioneDetailPage implements OnInit {
     public service: DistribuzioniService,
     public router: Router,
     private toastCtrl: ToastController
-  ) {
-    this.title = "Dettaglio  distribuzione";
-  }
+  ) {}
   filter(ev) {}
   submit(ev) {
     this.currentLeafleting.updateItem(ev);
@@ -74,6 +72,8 @@ export class DistribuzioneDetailPage implements OnInit {
     const leafleting_key = this.route.snapshot.paramMap.get("key");
     this.currentLeafleting = new LeafletingModel();
     this.currentLeafleting.load(leafleting_key, this.service);
+
+    this.title = this.currentLeafleting.title;
     const today = new Date();
     const myFormat = (d: Date) => {
       const mm = d.getMonth() + 1;

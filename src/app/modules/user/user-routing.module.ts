@@ -20,6 +20,11 @@ const routes: Routes = [
     path: "reset-password",
     loadChildren:
       "./pages/reset-password/reset-password.module#ResetPasswordPageModule"
+  },
+  { path: "users", loadChildren: "./pages/users/users.module#UsersPageModule" },
+  {
+    path: "user/edit-user/:key",
+    loadChildren: "./pages/edit-user/edit-user.module#EditUserPageModule"
   }
 ];
 @NgModule({

@@ -26,9 +26,11 @@ export class DistribuzioniService implements ItemServiceInterface {
   updateItem(item: ItemModelInterface) {
     return this.leafletingListRef.child(item.key).update(item.serialize());
   }
+
   deleteItem(key: string) {
     return this.leafletingListRef.child(key).remove();
   }
+
   getDummyItem() {
     return new LeafletingModel();
   }
