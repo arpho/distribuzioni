@@ -45,7 +45,7 @@ export class EditUserPage implements OnInit {
         required: true
       }),
       new TextboxQuestion({
-        key: "lastname",
+        key: "lastName",
         label: "cognome",
         value: this.currentUser.lastName,
         order: 2

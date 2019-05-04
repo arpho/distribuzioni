@@ -1,6 +1,6 @@
 {
   "name": "distribuzioni",
-  "version": "0.0.8.0",
+  "version": "0.0.8.1",
   "features": [
     "modifica volantinaggi"
   ],
@@ -8,7 +8,7 @@
     "creazione distribuzioni",
     "visualizzazione dettaglio volantinaggio",
     "users list",
-    "user detail"
+    "bug fixing"
   ],
   "author": "Arpho",
   "scripts": {

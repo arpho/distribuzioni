@@ -63,14 +63,14 @@ export class UserModel implements ItemModelInterface {
 
   getValue2() {
     const value = new Value(
-      this.enabled ? "abilitato" : "non abilitato",
-      "abilitato"
+      this.enabled ? " abilitato" : " non abilitato",
+      " abilitato"
     );
     return value;
   }
 
   getValue4() {
-    const value = new Value(this.enabled, "abilitato");
+    const value = new Value(this.enabled, " abilitato");
     return value;
   }
 
