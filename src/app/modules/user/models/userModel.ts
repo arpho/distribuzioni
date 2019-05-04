@@ -34,11 +34,15 @@ export class UserModel implements ItemModelInterface {
       this[Key] = value;
     };
     Object.entries(item).forEach(loader);
+    if (item["birthDate"]) {
+      this.birthDate = new BirthDateModel(item["birthDate"]);
+    }
   }
 
   serialize() {
     return {
-      birthDate: this.birthDate,
+      key: this.key,
+      birthDate: this.birthDate.serialize(),
       email: this.email,
       firstName: this.firstName,
       lastName: this.lastName,

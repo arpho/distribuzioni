@@ -20,6 +20,7 @@ export class UsersPage implements OnInit {
         snapshot.forEach(snap => {
           const user = new UserModel();
           user.load(snap.key, this.service);
+
           this.usersList.push(user);
         });
       });

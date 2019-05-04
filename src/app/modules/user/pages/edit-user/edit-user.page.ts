@@ -33,7 +33,14 @@ export class EditUserPage implements OnInit {
     this.currentUser = new UserModel();
     this.currentUser.key = userKey;
     this.currentUser.load(userKey, this.service);
-    console.log("current user", this.currentUser);
+    if (!this.currentUser.birthDate) {
+      this.currentUser.birthDate = new BirthDateModel({
+        year: 1977,
+        day: 16,
+        month: 2
+      });
+      this.currentUser.birthDate.loadFromDate(new Date());
+    }
     this.submitText = "modifica";
     this.title = this.currentUser.email;
     const questions: QuestionBase<any>[] = [
