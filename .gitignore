@@ -33,3 +33,5 @@ node_modules
 \.firebaserc
 
 capacitor\.config\.json
+
+*.cache
