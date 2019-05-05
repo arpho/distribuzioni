@@ -42,7 +42,10 @@ export class EditUserPage implements OnInit {
       this.currentUser.birthDate.loadFromDate(new Date());
     }
     this.submitText = "modifica";
-    this.title = this.currentUser.email;
+    this.title =
+      this.currentUser.firstName && this.currentUser.lastName
+        ? `${this.currentUser.firstName} ${this.currentUser.lastName}`
+        : this.currentUser.email;
     const questions: QuestionBase<any>[] = [
       new TextboxQuestion({
         key: "firstName",

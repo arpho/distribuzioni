@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./services/authguard.service";
+import { CanActivate } from "@angular/router/src/utils/preactivation";
 
 const routes: Routes = [
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: "signup",
+    path: "user/signup",
     loadChildren: "./pages/signup/signup.module#SignupPageModule"
   },
   {
@@ -21,10 +22,15 @@ const routes: Routes = [
     loadChildren:
       "./pages/reset-password/reset-password.module#ResetPasswordPageModule"
   },
-  { path: "users", loadChildren: "./pages/users/users.module#UsersPageModule" },
+  {
+    path: "users",
+    loadChildren: "./pages/users/users.module#UsersPageModule",
+    canActivate: [AuthGuard]
+  },
   {
     path: "user/edit-user/:key",
-    loadChildren: "./pages/edit-user/edit-user.module#EditUserPageModule"
+    loadChildren: "./pages/edit-user/edit-user.module#EditUserPageModule",
+    canActivate: [AuthGuard]
   }
 ];
 @NgModule({

@@ -17,9 +17,7 @@ export class ProfilePage implements OnInit {
     private authService: AuthService,
     private profileService: ProfileService,
     private router: Router
-  ) {
-    console.log("profile");
-  }
+  ) {}
 
   ngOnInit() {
     if (this.profileService.getUserProfile()) {
@@ -66,6 +64,8 @@ export class ProfilePage implements OnInit {
         {
           text: "Salva",
           handler: data => {
+            this.userProfile.firstName = data.firstName;
+            this.userProfile.lastName = data.lastName;
             this.profileService.updateName(data.firstName, data.lastName);
           }
         }

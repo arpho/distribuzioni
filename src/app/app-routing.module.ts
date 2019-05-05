@@ -17,6 +17,7 @@ const routes: Routes = [
     path: "list",
     loadChildren: "./list/list.module#ListPageModule"
   },
+
   /* { path: 'profile', loadChildren: './modules/user/pages/profile/profile.module#ProfilePageModule' },
    { path: 'signup', loadChildren: './modules/user/pages/signup/signup.module#SignupPageModule' },
    { path: 'login', loadChildren: './modules/user/pages/login/login.module#LoginPageModule' },
@@ -37,7 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes /* { enableTracing: true }*/)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
