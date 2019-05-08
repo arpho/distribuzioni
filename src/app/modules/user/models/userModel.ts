@@ -5,6 +5,8 @@ import {
 import { ItemServiceInterface } from "../../item/models/ItemServiceInterface";
 import { Value } from "../../item/models/value";
 import { BirthDateModel } from "./birthDateModel";
+import { PrivilegesLevelModel } from "./privilegesLevelModel";
+import { configs } from "src/app/configs/configs";
 export class UserModel implements ItemModelInterface {
   birthDate: BirthDateModel; // { day: number; month: number; year: number };
   email: string;
@@ -14,6 +16,7 @@ export class UserModel implements ItemModelInterface {
   key: string;
   level: Number;
   enabled: Boolean;
+  privileges: PrivilegesLevelModel;
 
   constructor(item?: Object) {
     if (item) {
@@ -37,6 +40,9 @@ export class UserModel implements ItemModelInterface {
     if (item["birthDate"]) {
       this.birthDate = new BirthDateModel(item["birthDate"]);
     }
+    this.privileges = configs.accessLevel.filter(
+      (access: PrivilegesLevelModel) => access.level == this.level
+    )[0];
   }
 
   serialize() {
@@ -47,7 +53,7 @@ export class UserModel implements ItemModelInterface {
       firstName: this.firstName,
       lastName: this.lastName,
       enabled: this.enabled,
-      level: this.level
+      level: this.privileges.level
     };
   }
 

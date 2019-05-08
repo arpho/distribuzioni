@@ -49,7 +49,6 @@ export class AppComponent {
     this.info.areThereNews().then(v => {
       if (v > 0) {
         this.info.navigateTo().then(path => {
-          console.log("navigating to ", path);
           this.router.navigateByUrl(path);
         });
       }

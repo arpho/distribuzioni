@@ -32,7 +32,9 @@ export class EditUserPage implements OnInit {
     const userKey = this.route.snapshot.paramMap.get("key");
     this.currentUser = new UserModel();
     this.currentUser.key = userKey;
-    this.currentUser.load(userKey, this.service);
+    if (userKey) {
+      this.currentUser.load(userKey, this.service);
+    }
     if (!this.currentUser.birthDate) {
       this.currentUser.birthDate = new BirthDateModel({
         year: 1977,
