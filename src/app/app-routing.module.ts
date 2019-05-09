@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./modules/user/services/authguard";
+import { RoleGuardService } from "./modules/user/services/role-guards.service";
+import { PrivilegesLevelModel } from "./modules/user/models/privilegesLevelModel";
 
 const routes: Routes = [
   {
@@ -11,7 +13,14 @@ const routes: Routes = [
   {
     path: "home",
     loadChildren: "./home/home.module#HomePageModule",
-    canActivate: [AuthGuard]
+    canActivate: [RoleGuardService, AuthGuard],
+    data: {
+      expectedRole: [
+        "developer",
+        "activated",
+        new PrivilegesLevelModel({ level: 3, key: "autorizzato" })
+      ]
+    }
   },
   {
     path: "list",

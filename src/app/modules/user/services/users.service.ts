@@ -9,6 +9,7 @@ import { ItemModelInterface } from "../../item/models/itemModelInterface";
 })
 export class UsersService implements ItemServiceInterface {
   public usersRef: firebase.database.Reference;
+  private loggedUser: UserModel;
 
   constructor() {
     this.usersRef = firebase.database().ref("/userProfile");
@@ -18,6 +19,16 @@ export class UsersService implements ItemServiceInterface {
     if (this.usersRef) {
       return this.usersRef.child(key);
     }
+  }
+
+  getLoggedUser() {
+    return this.loggedUser;
+  }
+
+  setLoggedUser(key: string) {
+    console.log("setting logged user");
+    this.loggedUser = new UserModel();
+    this.loggedUser.load(key, this);
   }
 
   deleteItem(key: string) {

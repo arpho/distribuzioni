@@ -3,7 +3,7 @@ import * as firebase from "firebase/app";
 import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
-import { configs } from "./configs/configs";
+import { configs } from "./configs/credentials";
 import { InfoService } from "./modules/info/services/info/info.service";
 import { Router } from "@angular/router";
 

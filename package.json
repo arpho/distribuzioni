@@ -1,6 +1,6 @@
 {
   "name": "distribuzioni",
-  "version": "0.0.8.6",
+  "version": "0.0.8.6.2",
   "features": [
     "modifica volantinaggi"
   ],
@@ -9,7 +9,8 @@
     "visualizzazione dettaglio volantinaggio",
     "users list",
     "refactoring",
-    "defined access Levels"
+    "refactored credentials",
+    "implemented role-guard"
   ],
   "author": "Arpho",
   "scripts": {
@@ -53,6 +54,7 @@
     "cordova-sqlite-storage": "^3.0.0",
     "core-js": "^2.5.4",
     "firebase": "^5.8.2",
+    "jwt-decode": "^2.2.0",
     "rxjs": "~6.3.3",
     "terser": "^3.14.1",
     "zone.js": "~0.8.29"
