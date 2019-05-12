@@ -5,7 +5,7 @@ import {
 import { ItemServiceInterface } from "../../item/models/ItemServiceInterface";
 import { Value } from "../../item/models/value";
 import { BirthDateModel } from "./birthDateModel";
-import { PrivilegesLevelModel } from "./privilegesLevelModel";
+import { RoleModel } from "./privilegesLevelModel";
 import { configs } from "src/app/configs/configs";
 export class UserModel implements ItemModelInterface {
   birthDate: BirthDateModel; // { day: number; month: number; year: number };
@@ -16,7 +16,7 @@ export class UserModel implements ItemModelInterface {
   key: string;
   level: Number;
   enabled: Boolean;
-  privileges: PrivilegesLevelModel;
+  privileges: RoleModel;
 
   constructor(item?: Object) {
     if (item) {
@@ -41,7 +41,7 @@ export class UserModel implements ItemModelInterface {
       this.birthDate = new BirthDateModel(item["birthDate"]);
     }
     this.privileges = configs.accessLevel.filter(
-      (access: PrivilegesLevelModel) => access.level == this.level
+      (access: RoleModel) => access.level == this.level
     )[0];
   }
 
@@ -57,13 +57,15 @@ export class UserModel implements ItemModelInterface {
     };
   }
 
-  load(key: string, service: ItemServiceInterface) {
+  async load(key: string, service: ItemServiceInterface) {
     if (service.getItem(key)) {
       service.getItem(key).on("value", value => {
         this.build(value.val());
         this.key = key;
+        return this;
       });
     }
+    return this;
   }
 
   getValue3() {

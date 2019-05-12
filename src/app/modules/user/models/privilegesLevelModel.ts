@@ -1,4 +1,4 @@
-export class PrivilegesLevelModel {
+export class RoleModel {
   public level: number;
   public key: string;
 
@@ -6,7 +6,7 @@ export class PrivilegesLevelModel {
     this.level = level.level;
     this.key = level.key;
   }
-  isAllowed(Level: PrivilegesLevelModel) {
+  isAllowed(Level: RoleModel) {
     return this.level <= Level.level;
   }
 }

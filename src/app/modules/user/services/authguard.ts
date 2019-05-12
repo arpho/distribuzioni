@@ -15,6 +15,11 @@ import "firebase/auth";
 })
 export class AuthGuard implements CanActivate {
   constructor(private router: Router, public User: UsersService) {}
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -22,7 +27,9 @@ export class AuthGuard implements CanActivate {
     return new Promise((resolve, reject) => {
       firebase.auth().onAuthStateChanged((user: firebase.User) => {
         if (user) {
-          console.log(user);
+          console.log("user from auth", user);
+          this.User.setLoggedUser(user.uid);
+          this.delay(1000);
           console.log(this.User.getLoggedUser(), "logged user");
           resolve(true);
         } else {

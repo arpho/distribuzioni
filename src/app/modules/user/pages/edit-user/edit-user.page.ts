@@ -8,6 +8,9 @@ import { SwitchQuestion } from "src/app/modules/item/models/question-switch";
 import { DateQuestion } from "src/app/modules/dynamic-form/models/question-date";
 import { BirthDateModel } from "../../models/birthDateModel";
 import { DropdownQuestion } from "src/app/modules/dynamic-form/models/question-dropdown";
+// import * as admin from "firebase-admin";
+import { configs } from "src/app/configs/configs";
+import { RoleModel } from "../../models/privilegesLevelModel";
 
 @Component({
   selector: "app-edit-user",
@@ -99,7 +102,13 @@ export class EditUserPage implements OnInit {
     ev.email = this.currentUser.email; // non modifico email
     const user = new UserModel(ev);
     user.key = this.currentUser.key;
+    user.privileges = configs.accessLevel.filter((r: RoleModel) => {
+      r.level == this.currentUser.level;
+    })[0];
     console.log("updating user", user);
+    /*admin.auth().setCustomUserClaims(this.currentUser.key, {
+      role: this.currentUser.level
+    }); */
     this.service
       .updateItem(user)
       .then(v => {

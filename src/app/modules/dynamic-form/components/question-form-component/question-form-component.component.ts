@@ -32,9 +32,9 @@ export class QuestionFormComponent implements OnInit {
         });
   }
   get isValid() {
-    return this.form.controls[this.question.key].valid;
+    return this.question ? this.form.controls[this.question.key].valid : false;
   }
   get getValue() {
-    return this.form.get(this.question.key).value;
+    return this.question.key ? this.form.get(this.question.key).value : "";
   }
 }

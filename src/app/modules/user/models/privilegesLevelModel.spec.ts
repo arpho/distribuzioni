@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { PrivilegesLevelModel } from "./privilegesLevelModel";
+import { RoleModel } from "./privilegesLevelModel";
 
 describe("testing PrivilegesLevelModel", function() {
-  const sviluppatore = new PrivilegesLevelModel({
+  const sviluppatore = new RoleModel({
     level: 1,
     key: "sviluppatore"
   });
 
-  const abilitato = new PrivilegesLevelModel({
+  const abilitato = new RoleModel({
     level: 3,
     key: "test abilitato"
   });
   it("sviluppatore is allowed at abilitato's level", function() {
-    const userLevel = new PrivilegesLevelModel({
+    const userLevel = new RoleModel({
       level: 1,
       key: "sviluppatore"
     });

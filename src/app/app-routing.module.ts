@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./modules/user/services/authguard";
 import { RoleGuardService } from "./modules/user/services/role-guards.service";
-import { PrivilegesLevelModel } from "./modules/user/models/privilegesLevelModel";
+import { RoleModel } from "./modules/user/models/privilegesLevelModel";
 
 const routes: Routes = [
   {
@@ -15,11 +15,7 @@ const routes: Routes = [
     loadChildren: "./home/home.module#HomePageModule",
     canActivate: [RoleGuardService, AuthGuard],
     data: {
-      expectedRole: [
-        "developer",
-        "activated",
-        new PrivilegesLevelModel({ level: 3, key: "autorizzato" })
-      ]
+      expectedRole: [new RoleModel({ level: 3, key: "autorizzato" })]
     }
   },
   {
@@ -42,7 +38,11 @@ const routes: Routes = [
   {
     path: "distribuzione-create",
     loadChildren:
-      "./pages/distribuzione-create/distribuzione-create.module#DistribuzioneCreatePageModule"
+      "./pages/distribuzione-create/distribuzione-create.module#DistribuzioneCreatePageModule",
+    canActivate: [AuthGuard],
+    data: {
+      expectedRole: [new RoleModel({ level: 2, key: "responsabile" })]
+    }
   }
 ];
 

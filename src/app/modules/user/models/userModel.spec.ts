@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { PrivilegesLevelModel } from "./privilegesLevelModel";
+import { RoleModel } from "./privilegesLevelModel";
 import { UserModel } from "./userModel";
 import { BirthDateModel } from "./birthDateModel";
 const user = new UserModel();
@@ -31,7 +31,7 @@ describe("test build function", () => {
     expect(user.level).toBe(1);
     expect(user.birthDate instanceof BirthDateModel).toBeTruthy();
     // checkingf privileges level
-    expect(user.privileges instanceof PrivilegesLevelModel).toBeTruthy();
+    expect(user.privileges instanceof RoleModel).toBeTruthy();
     expect(user.privileges.key).toBe("Sviluppatore");
     expect(user.privileges.level).toBe(1);
   });
