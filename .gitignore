@@ -35,3 +35,9 @@ node_modules
 capacitor\.config\.json
 
 *.cache
+
+android/
+
+resources/ios/
+
+src/webpack\.configs\.js
