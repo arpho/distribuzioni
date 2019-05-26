@@ -4,8 +4,10 @@ import {
 } from "../modules/item/models/itemModelInterface";
 import { Value } from "../modules/item/models/value";
 import { ItemServiceInterface } from "../modules/item/models/ItemServiceInterface";
+import { QuickAction } from "../modules/item/models/QuickAction";
 
 export class LeafletingModel implements ItemModelInterface {
+  quickActions: Array<QuickAction>;
   constructor(model?: {
     title: string;
     archived: boolean;
@@ -13,6 +15,26 @@ export class LeafletingModel implements ItemModelInterface {
     endDate: string;
     note: string;
   }) {
+    this.quickActions = [
+      new QuickAction({
+        icon: "paper-plane",
+        title: "aggiungi volantini",
+        // tslint:disable-next-line: max-line-length
+        description: "incrementa il numero dei volantini stampati",
+        action: (args: { popupManager: any; router: any }) => {
+          console.log("stampa volantini");
+        }
+      }),
+      new QuickAction({
+        icon: "paper",
+        title: "aggiungi locandine",
+        // tslint:disable-next-line: max-line-length
+        description: "incrementa il numero delle locandine stampate",
+        action: (args: { popupManager: any; router: any }) => {
+          console.log("stampa volantini");
+        }
+      })
+    ];
     if (model) {
       this.title = model.title;
       this.archived = model.archived;
@@ -33,6 +55,12 @@ export class LeafletingModel implements ItemModelInterface {
   private volantini: Number;
   private locandine: Number;
   private manifesti: Number;
+  getQuickActions() {
+    return this.quickActions;
+  }
+  hasQuickActions() {
+    return true;
+  }
   getEditPopup() {
     return "/distribuzione-detail";
   }

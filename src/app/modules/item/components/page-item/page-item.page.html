@@ -4,4 +4,22 @@
   <p class="value2">
     {{ Item?.getValue2().label }}:{{ Item?.getValue2().value }}
   </p>
+  <div>
+    <span [ngSwitch]="Item?.hasQuickActions()">
+      <div *ngSwitchCase="true">
+        <ion-fab vertical="bottom" horizontal="end">
+          <ion-fab-button size="small"
+            ><ion-icon name="flash" color="energetic"></ion-icon
+          ></ion-fab-button>
+          <ion-fab-list side="start">
+            <ion-fab-button *ngFor="let action of Item?.getQuickActions()"
+              ><ion-icon name="{{ action?.getIcon() }}"></ion-icon
+            ></ion-fab-button>
+          </ion-fab-list>
+        </ion-fab>
+      </div>
+      <p *ngSwitchCase="false"></p>
+      <p *ngSwitchDefault></p>
+    </span>
+  </div>
 </ion-item>

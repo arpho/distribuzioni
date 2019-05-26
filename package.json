@@ -1,6 +1,6 @@
 {
   "name": "distribuzioni",
-  "version": "0.0.8.6.3",
+  "version": "0.0.8.7",
   "features": [
     "modifica volantinaggi"
   ],
@@ -10,7 +10,8 @@
     "users list",
     "refactoring",
     "refactored credentials",
-    "cap synced"
+    "cap synced",
+    "showed quick actions"
   ],
   "author": "Arpho",
   "scripts": {

@@ -2,6 +2,7 @@ import { Value } from "./value";
 import { ItemServiceInterface } from "./ItemServiceInterface";
 import { AlertOptions } from "@ionic/core";
 import { ItemFilterOPtions } from "./ItemFIlterOptions";
+import { QuickAction } from "./QuickAction";
 
 export type Genere = "o" | "a";
 
@@ -9,7 +10,7 @@ export interface ItemModelInterface {
   title: string;
   note?: string;
   key: string;
-  quickActions?: { label: string; icon: string; action: AlertOptions }[];
+  quickActions?: Array<QuickAction>;
   archived?: boolean;
   getTitle(): Value;
   getNote(): Value;
@@ -27,6 +28,7 @@ export interface ItemModelInterface {
   /**ritorna l'etichetta e il valore da visualizzare del campo aggregato **/
   getAggregate(): Value;
   aggregateAction?(): any | void;
+  hasQuickAction?(): boolean;
   serialize /*
   serialize the model for storing in firebase
   */();
