@@ -5,7 +5,7 @@ describe("quickAction slould be instantiated", function() {
     icon: "icon_test",
     title: "title",
     description: "description",
-    action: (params: { router: any; popup: any }) => {
+    action: (params: { router: any; alertCtrl: any }) => {
       return {};
     }
   });

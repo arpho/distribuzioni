@@ -13,7 +13,10 @@
           ></ion-fab-button>
           <ion-fab-list side="start">
             <ion-fab-button *ngFor="let action of Item?.getQuickActions()"
-              ><ion-icon name="{{ action?.getIcon() }}"></ion-icon
+              ><ion-icon
+                (click)="doAction(action)"
+                name="{{ action?.getIcon() }}"
+              ></ion-icon
             ></ion-fab-button>
           </ion-fab-list>
         </ion-fab>

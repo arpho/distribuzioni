@@ -7,6 +7,10 @@ import { ItemServiceInterface } from "../modules/item/models/ItemServiceInterfac
 import { QuickAction } from "../modules/item/models/QuickAction";
 
 export class LeafletingModel implements ItemModelInterface {
+  /**
+   * name
+   */
+  public name() {}
   quickActions: Array<QuickAction>;
   constructor(model?: {
     title: string;
@@ -21,16 +25,14 @@ export class LeafletingModel implements ItemModelInterface {
         title: "aggiungi volantini",
         // tslint:disable-next-line: max-line-length
         description: "incrementa il numero dei volantini stampati",
-        action: (args: { popupManager: any; router: any }) => {
-          console.log("stampa volantini");
-        }
+        action: this.addLeftflyer
       }),
       new QuickAction({
         icon: "paper",
         title: "aggiungi locandine",
         // tslint:disable-next-line: max-line-length
         description: "incrementa il numero delle locandine stampate",
-        action: (args: { popupManager: any; router: any }) => {
+        action: (args: { alertCtrl: any; router: any }) => {
           console.log("stampa volantini");
         }
       })
@@ -52,9 +54,37 @@ export class LeafletingModel implements ItemModelInterface {
   public note: string;
   public key: string;
   public archived: boolean;
-  private volantini: Number;
-  private locandine: Number;
-  private manifesti: Number;
+  private volantini: number;
+  private locandine: number;
+  private manifesti: number;
+  addLeftflyer = async (args: {
+    alertCtrl: any;
+    router: any;
+    service: ItemServiceInterface;
+  }) => {
+    const alert = await args.alertCtrl.create({
+      header: "nuovi volantini stampati",
+      subHeader: "Subtitle",
+      message: "This is an alert message.",
+      inputs: [
+        {
+          name: "leftflyer",
+          type: "number",
+          value: 0
+        }
+      ],
+      buttons: [
+        {
+          text: "OK",
+          handler: data => {
+            this.volantini += parseInt(data.leftflyer) || 0;
+            args.service.updateItem(this);
+          }
+        }
+      ]
+    });
+    return await alert.present();
+  };
   getQuickActions() {
     return this.quickActions;
   }

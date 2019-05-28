@@ -28,7 +28,7 @@ export interface ItemModelInterface {
   /**ritorna l'etichetta e il valore da visualizzare del campo aggregato **/
   getAggregate(): Value;
   aggregateAction?(): any | void;
-  hasQuickAction?(): boolean;
+  hasQuickActions?(): boolean;
   serialize /*
   serialize the model for storing in firebase
   */();

@@ -1,13 +1,22 @@
+import { ItemServiceInterface } from "./ItemServiceInterface";
 export class QuickAction {
   icon: string;
   title: string;
   description: string;
-  action: (params: { router: any; popupManager: any }) => void;
+  action: (params: {
+    router: any;
+    alertCtrl: any;
+    Service: ItemServiceInterface;
+  }) => void;
   constructor(args: {
     icon: string;
     title: string;
     description: string;
-    action: (params: { router: any; popupManager: any }) => void;
+    action: (params: {
+      router: any;
+      alertCtrl: any;
+      Service?: ItemServiceInterface;
+    }) => void;
   }) {
     this.title = args.title;
     this.icon = args.icon;

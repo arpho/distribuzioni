@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { AlertController } from "@ionic/angular";
 import { ItemModelInterface } from "../../models/itemModelInterface";
+import { ItemServiceInterface } from "../../models/ItemServiceInterface";
 
 @Component({
   selector: "my-item",
@@ -17,7 +18,8 @@ import { ItemModelInterface } from "../../models/itemModelInterface";
 })
 export class MyItemComponent implements OnInit, OnChanges {
   @Input() Item: ItemModelInterface;
-  constructor(private alertCtrl: AlertController) {}
+  @Input() Service: ItemServiceInterface;
+  constructor(public alertCtrl: AlertController) {}
 
   ngOnChanges(changes: SimpleChanges) {}
 
