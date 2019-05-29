@@ -7,6 +7,7 @@ import { Value } from "../../item/models/value";
 import { BirthDateModel } from "./birthDateModel";
 import { RoleModel } from "./privilegesLevelModel";
 import { configs } from "src/app/configs/configs";
+import { QuickAction } from "../../item/models/QuickAction";
 export class UserModel implements ItemModelInterface {
   birthDate: BirthDateModel; // { day: number; month: number; year: number };
   email: string;
@@ -15,12 +16,23 @@ export class UserModel implements ItemModelInterface {
   title: string;
   key: string;
   level: Number;
+  quickActions: Array<QuickAction>;
   enabled: Boolean;
   privileges: RoleModel;
 
   constructor(item?: Object) {
     if (item) {
       this.build(item);
+      this.quickActions = [
+        new QuickAction({
+          icon: "create",
+          title: "modifica",
+          description: "",
+          action: (args: { alertCtrl: any; router: any }) => {
+            args.router.navigate([this.getEditPopup(), this.key]);
+          }
+        })
+      ];
     }
   }
 
@@ -43,6 +55,12 @@ export class UserModel implements ItemModelInterface {
     this.privileges = configs.accessLevel.filter(
       (access: RoleModel) => access.level == this.level
     )[0];
+  }
+  hasQuickActions() {
+    return true;
+  }
+  getQuickActions() {
+    return this.quickActions;
   }
 
   serialize() {
@@ -74,10 +92,7 @@ export class UserModel implements ItemModelInterface {
   }
 
   getValue2() {
-    const value = new Value(
-      this.enabled ? " abilitato" : " non abilitato",
-      " abilitato"
-    );
+    const value = new Value(this.enabled ? "" : " non abilitato", " abilitato");
     return value;
   }
 

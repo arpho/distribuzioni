@@ -2,8 +2,11 @@ import {
   ItemModelInterface,
   Genere
 } from "../modules/item/models/itemModelInterface";
+
 import { Value } from "../modules/item/models/value";
+
 import { ItemServiceInterface } from "../modules/item/models/ItemServiceInterface";
+
 import { QuickAction } from "../modules/item/models/QuickAction";
 
 export class LeafletingModel implements ItemModelInterface {
@@ -11,7 +14,9 @@ export class LeafletingModel implements ItemModelInterface {
    * name
    */
   public name() {}
+
   quickActions: Array<QuickAction>;
+
   constructor(model?: {
     title: string;
     archived: boolean;
@@ -35,21 +40,38 @@ export class LeafletingModel implements ItemModelInterface {
         action: (args: { alertCtrl: any; router: any }) => {
           console.log("stampa volantini");
         }
+      }),
+      new QuickAction({
+        icon: "create",
+        title: "modifica",
+        description: "",
+        action: (args: { alertCtrl: any; router: any }) => {
+          args.router.navigate([this.getEditPopup(), this.key]);
+        }
       })
     ];
+
     if (model) {
       this.title = model.title;
       this.archived = model.archived;
+
       this.periodo = {
         inizio: new Date(model.startDate),
         fine: new Date(model.endDate)
       };
       this.note = model.note;
     } else {
-      this.periodo = { inizio: new Date(), fine: new Date() };
+      this.periodo = {
+        inizio: new Date(),
+        fine: new Date()
+      };
     }
   }
-  public periodo: { inizio: Date; fine: Date };
+
+  public periodo: {
+    inizio: Date;
+    fine: Date;
+  };
   public title: string;
   public note: string;
   public key: string;
@@ -57,14 +79,15 @@ export class LeafletingModel implements ItemModelInterface {
   private volantini: number;
   private locandine: number;
   private manifesti: number;
+
   addLeftflyer = async (args: {
     alertCtrl: any;
     router: any;
-    service: ItemServiceInterface;
+    Service: ItemServiceInterface;
   }) => {
     const alert = await args.alertCtrl.create({
       header: "nuovi volantini stampati",
-      subHeader: "Subtitle",
+      subHeader: "",
       message: "This is an alert message.",
       inputs: [
         {
@@ -78,19 +101,23 @@ export class LeafletingModel implements ItemModelInterface {
           text: "OK",
           handler: data => {
             this.volantini += parseInt(data.leftflyer) || 0;
-            args.service.updateItem(this);
+            args.Service.updateItem(this);
+            alert.dismiss();
           }
         }
       ]
     });
     return await alert.present();
   };
+
   getQuickActions() {
     return this.quickActions;
   }
+
   hasQuickActions() {
     return true;
   }
+
   getEditPopup() {
     return "/distribuzione-detail";
   }
@@ -107,15 +134,20 @@ export class LeafletingModel implements ItemModelInterface {
     };
   }
 
-  updateItem(newItem: any /*
+  updateItem(
+    newItem: any
+
+    /*
    carica le modifiche nel modello
-  */) {
+  */
+  ) {
     this.title = newItem["title"];
     this.note = newItem["note"];
     this.archived = newItem["archived"];
     this.periodo.inizio = new Date(newItem["startDate"]);
     this.periodo.fine = new Date(newItem["endDate"]);
   }
+
   serialize() {
     return {
       // key: this.key,
@@ -132,8 +164,13 @@ export class LeafletingModel implements ItemModelInterface {
 
   getElement() {
     const genere: Genere = "o";
-    return { element: "volantinaggio", genere: genere };
+
+    return {
+      element: "volantinaggio",
+      genere: genere
+    };
   }
+
   getAggregate() {
     return new Value("aggregato", "to be implemented");
   }
@@ -150,6 +187,7 @@ export class LeafletingModel implements ItemModelInterface {
             this[v[0]] = v[1];
           });
         }
+
         this.periodo = {
           inizio: new Date(
             this["inizio"].year,

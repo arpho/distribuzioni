@@ -9,6 +9,7 @@ import { AlertController } from "@ionic/angular";
 import { ItemModelInterface } from "../../models/itemModelInterface";
 import { ItemServiceInterface } from "../../models/ItemServiceInterface";
 import { QuickAction } from "../../models/QuickAction";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-page-item",
@@ -20,7 +21,7 @@ export class PageItemComponent extends MyItemComponent implements OnInit {
   @Input() Item: ItemModelInterface;
   @Input() Service: ItemServiceInterface;
 
-  constructor(public alertCtrl: AlertController) {
+  constructor(public alertCtrl: AlertController, public router: Router) {
     super(alertCtrl);
   }
 
@@ -28,7 +29,7 @@ export class PageItemComponent extends MyItemComponent implements OnInit {
   doAction(action: QuickAction) {
     action.getAction()({
       alertCtrl: this.alertCtrl,
-      router: 2,
+      router: this.router,
       Service: this.Service
     });
   }

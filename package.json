@@ -1,8 +1,8 @@
 {
   "name": "distribuzioni",
-  "version": "0.0.9.0",
+  "version": "0.0.9.5",
   "features": [
-    "quick action nuovi volantini"
+    "edit in quickAction"
   ],
   "newFeatures": [
     "creazione distribuzioni",

@@ -5,3 +5,18 @@ p.note {
     top: 17px;
     position: relative;
 }
+
+p.itemTitle {
+    font-weight: bold;
+    font-style: oblique;
+}
+
+ion-fab.fab-horizontal-end.fab-vertical-bottom.hydrated {
+    top: 0px;
+}
+
+span.value2 {
+    right: 4em;
+    position: absolute;
+    top: 0em;
+}

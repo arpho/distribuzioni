@@ -1,11 +1,17 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Location, LocationStrategy, PathLocationStrategy, APP_BASE_HREF } from '@angular/common';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import {
+  Location,
+  LocationStrategy,
+  PathLocationStrategy,
+  APP_BASE_HREF
+} from "@angular/common";
+import { Router } from "@angular/router";
+import { RouterTestingModule } from "@angular/router/testing";
+import { PageItemComponent } from "./page-item.component";
+import { IonicModule, NavController } from "@ionic/angular";
 
-import { PageItemComponent } from './page-item.component';
-import { IonicModule, NavController } from '@ionic/angular';
-
-describe('PageItemComponent', () => {
+describe("PageItemComponent", () => {
   let component: PageItemComponent;
   let fixture: ComponentFixture<PageItemComponent>;
 
@@ -13,11 +19,14 @@ describe('PageItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [PageItemComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [IonicModule.forRoot()],
-      providers: [NavController, Location, { provide: LocationStrategy, useClass: PathLocationStrategy },
-        { provide: APP_BASE_HREF, useValue: '/my/app' }]
-    })
-      .compileComponents();
+      imports: [IonicModule.forRoot(), RouterTestingModule.withRoutes([])],
+      providers: [
+        NavController,
+        Location,
+        { provide: LocationStrategy, useClass: PathLocationStrategy },
+        { provide: APP_BASE_HREF, useValue: "/my/app" }
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -26,7 +35,7 @@ describe('PageItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
