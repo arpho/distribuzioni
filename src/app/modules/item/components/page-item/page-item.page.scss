@@ -15,8 +15,32 @@ ion-fab.fab-horizontal-end.fab-vertical-bottom.hydrated {
     top: 0px;
 }
 
+p.note {
+    font-style: italic;
+    font-size: large;
+}
+
+p.value3 {
+    position: relative;
+    // left: 32em;
+}
+
 span.value2 {
-    right: 4em;
+    // right: 4em;
     position: absolute;
-    top: 0em;
+    top: 3em;
+}
+
+span.value4 {
+    position: relative;
+    // left: 34em;
+}
+
+div.input-wrapper {
+    padding-left: unset;
+    padding-right: unset;
+    -webkit-padding-start: 16px;
+    padding-inline-start: 16px;
+    -webkit-padding-end: 16px;
+    padding-inline-end: 16px;
 }

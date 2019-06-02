@@ -37,9 +37,14 @@ export class LeafletingModel implements ItemModelInterface {
         title: "aggiungi locandine",
         // tslint:disable-next-line: max-line-length
         description: "incrementa il numero delle locandine stampate",
-        action: (args: { alertCtrl: any; router: any }) => {
-          console.log("stampa volantini");
-        }
+        action: this.addPosters
+      }),
+      new QuickAction({
+        icon: "today",
+        title: "aggiungi manifesti",
+        // tslint:disable-next-line: max-line-length
+        description: "incrementa il numero dei manifesti affissi",
+        action: this.addManifesti
       }),
       new QuickAction({
         icon: "create",
@@ -79,6 +84,66 @@ export class LeafletingModel implements ItemModelInterface {
   private volantini: number;
   private locandine: number;
   private manifesti: number;
+
+  addPosters = async (args: {
+    alertCtrl: any;
+    router: any;
+    Service: ItemServiceInterface;
+  }) => {
+    const alert = await args.alertCtrl.create({
+      header: "nuovi locandine stampate",
+      subHeader: "",
+      message: "This is an alert message.",
+      inputs: [
+        {
+          name: "posters",
+          type: "number",
+          value: 0
+        }
+      ],
+      buttons: [
+        {
+          text: "OK",
+          handler: data => {
+            this.locandine += parseInt(data.posters) || 0;
+            args.Service.updateItem(this);
+            alert.dismiss();
+          }
+        }
+      ]
+    });
+    return await alert.present();
+  };
+
+  addManifesti = async (args: {
+    alertCtrl: any;
+    router: any;
+    Service: ItemServiceInterface;
+  }) => {
+    const alert = await args.alertCtrl.create({
+      header: "nuovi manifesti affissi",
+      subHeader: "",
+      message: "This is an alert message.",
+      inputs: [
+        {
+          name: "manifesti",
+          type: "number",
+          value: 0
+        }
+      ],
+      buttons: [
+        {
+          text: "OK",
+          handler: data => {
+            this.manifesti += parseInt(data.manifesti) || 0;
+            args.Service.updateItem(this);
+            alert.dismiss();
+          }
+        }
+      ]
+    });
+    return await alert.present();
+  };
 
   addLeftflyer = async (args: {
     alertCtrl: any;
@@ -172,7 +237,7 @@ export class LeafletingModel implements ItemModelInterface {
   }
 
   getAggregate() {
-    return new Value("aggregato", "to be implemented");
+    return new Value({ label: "aggregato", value: "to be implemented" });
   }
 
   isArchived() {
@@ -206,7 +271,7 @@ export class LeafletingModel implements ItemModelInterface {
   }
 
   getNote() {
-    return new Value("nota", this.note);
+    return new Value({ value: this.note, label: "nota" });
   }
 
   build(item: Object) {
@@ -217,7 +282,7 @@ export class LeafletingModel implements ItemModelInterface {
   }
 
   getTitle() {
-    return new Value(this.title, "volantinaggio");
+    return new Value({ value: this.title, label: "volantinaggio" });
   }
 
   archiveItem(archived) {
@@ -225,14 +290,14 @@ export class LeafletingModel implements ItemModelInterface {
   }
 
   getValue2() {
-    return new Value(this.volantini, "volantini stamp");
+    return new Value({ value: this.volantini, label: "volantini stamp " });
   }
 
   getValue3() {
-    return new Value(this.locandine, "locandine acquistate");
+    return new Value({ value: this.locandine, label: "locandine acquistate " });
   }
 
   getValue4() {
-    return new Value(this.manifesti || 0, "manifesti");
+    return new Value({ value: this.manifesti || 0, label: "manifesti " });
   }
 }

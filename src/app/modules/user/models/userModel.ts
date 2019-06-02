@@ -23,25 +23,28 @@ export class UserModel implements ItemModelInterface {
   constructor(item?: Object) {
     if (item) {
       this.build(item);
-      this.quickActions = [
-        new QuickAction({
-          icon: "create",
-          title: "modifica",
-          description: "",
-          action: (args: { alertCtrl: any; router: any }) => {
-            args.router.navigate([this.getEditPopup(), this.key]);
-          }
-        })
-      ];
     }
+    this.quickActions = [
+      new QuickAction({
+        icon: "create",
+        title: "modifica",
+        description: "",
+        action: (args: { alertCtrl: any; router: any }) => {
+          args.router.navigate([this.getEditPopup(), this.key]);
+        }
+      })
+    ];
   }
 
   getNote() {
-    return new Value(`${this.firstName} ${this.lastName}`, "user");
+    return new Value({
+      value: `${this.firstName} ${this.lastName}`,
+      label: "user"
+    });
   }
 
   getTitle() {
-    return new Value(this.email, "user");
+    return new Value({ value: this.email, label: "user mail" });
   }
 
   build(item: Object) {
@@ -87,17 +90,26 @@ export class UserModel implements ItemModelInterface {
   }
 
   getValue3() {
-    const value = new Value(this.level, "livello");
+    const ruolo: RoleModel = configs.accessLevel.filter(
+      (v: RoleModel) => v.level == this.level
+    )[0];
+    const value = new Value({ value: ruolo.key, label: "livello " });
     return value;
   }
 
   getValue2() {
-    const value = new Value(this.enabled ? "" : " non abilitato", " abilitato");
+    const value = new Value({
+      value: this.enabled ? "" : " non abilitato",
+      label: " abilitato"
+    });
     return value;
   }
 
   getValue4() {
-    const value = new Value(this.enabled, " abilitato");
+    const value = new Value({
+      value: this.enabled ? "si" : "no",
+      label: " abilitato "
+    });
     return value;
   }
 
@@ -110,7 +122,7 @@ export class UserModel implements ItemModelInterface {
   }*/
 
   getAggregate() {
-    return new Value("aggregato", "to be implemented");
+    return new Value({ label: "aggregato", value: "to be implemented" });
   }
 
   getCreatePopup() {

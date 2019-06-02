@@ -1,17 +1,12 @@
 {
   "name": "distribuzioni",
-  "version": "0.0.9.5",
+  "version": "0.0.9.7",
   "features": [
-    "edit in quickAction"
+    "bug fixing"
   ],
   "newFeatures": [
-    "creazione distribuzioni",
-    "visualizzazione dettaglio volantinaggio",
-    "users list",
-    "refactoring",
-    "refactored credentials",
-    "cap synced",
-    "showed quick actions"
+    "quick actions got powers",
+    "improved ui"
   ],
   "author": "Arpho",
   "scripts": {

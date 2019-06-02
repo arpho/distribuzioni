@@ -85,11 +85,7 @@ export class EditUserPage implements OnInit {
       new DropdownQuestion({
         key: "level",
         label: "livello autorizzazioni",
-        options: [
-          { key: "autorizzato", value: 3 },
-          { key: "responsabile", value: 2 },
-          { key: "sviluppatore", value: 1 }
-        ],
+        options: configs.accessLevel,
         value: this.currentUser.level
       })
     ];
