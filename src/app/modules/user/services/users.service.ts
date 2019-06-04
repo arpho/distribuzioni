@@ -3,6 +3,7 @@ import * as firebase from "firebase";
 import { ItemServiceInterface } from "../../item/models/ItemServiceInterface";
 import { UserModel } from "../models/userModel";
 import { ItemModelInterface } from "../../item/models/itemModelInterface";
+import * as admin from "firebase-admin";
 
 @Injectable({
   providedIn: "root"

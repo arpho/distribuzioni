@@ -8,7 +8,7 @@ import { SwitchQuestion } from "src/app/modules/item/models/question-switch";
 import { DateQuestion } from "src/app/modules/dynamic-form/models/question-date";
 import { BirthDateModel } from "../../models/birthDateModel";
 import { DropdownQuestion } from "src/app/modules/dynamic-form/models/question-dropdown";
-// import * as admin from "firebase-admin";
+import * as admin from "firebase-admin";
 import { configs } from "src/app/configs/configs";
 import { RoleModel } from "../../models/privilegesLevelModel";
 
@@ -36,7 +36,9 @@ export class EditUserPage implements OnInit {
     this.currentUser = new UserModel();
     this.currentUser.key = userKey;
     if (userKey) {
-      this.currentUser.load(userKey, this.service);
+      this.currentUser
+        .load(userKey, this.service)
+        .then(() => console.log("loaded user", this.currentUser));
     }
     if (!this.currentUser.birthDate) {
       this.currentUser.birthDate = new BirthDateModel({
@@ -84,7 +86,7 @@ export class EditUserPage implements OnInit {
       }),
       new DropdownQuestion({
         key: "level",
-        label: "livello autorizzazioni",
+        label: "Ruolo utente",
         options: configs.accessLevel,
         value: this.currentUser.level
       })
@@ -92,7 +94,9 @@ export class EditUserPage implements OnInit {
     this.questions = questions;
   }
 
-  filter(ev) {}
+  filter(ev) {
+    console.log("user change", ev);
+  }
   submit(ev) {
     console.log("submit", ev);
     ev.email = this.currentUser.email; // non modifico email
@@ -102,6 +106,9 @@ export class EditUserPage implements OnInit {
       r.level == this.currentUser.level;
     })[0];
     console.log("updating user", user);
+    user.privileges = configs.accessLevel.filter(
+      (v: RoleModel) => v.level == ev.level
+    )[0];
     /*admin.auth().setCustomUserClaims(this.currentUser.key, {
       role: this.currentUser.level
     }); */

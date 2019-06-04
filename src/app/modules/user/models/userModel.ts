@@ -93,7 +93,7 @@ export class UserModel implements ItemModelInterface {
     const ruolo: RoleModel = configs.accessLevel.filter(
       (v: RoleModel) => v.level == this.level
     )[0];
-    const value = new Value({ value: ruolo.key, label: "livello " });
+    const value = new Value({ value: ruolo.key, label: "ruolo " });
     return value;
   }
 
