@@ -85,6 +85,10 @@ export class LeafletingModel implements ItemModelInterface {
   private locandine: number;
   private manifesti: number;
 
+  getCountingText() {
+    return " volantinaggi";
+  }
+
   addPosters = async (args: {
     alertCtrl: any;
     router: any;

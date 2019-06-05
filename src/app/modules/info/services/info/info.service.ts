@@ -14,7 +14,10 @@ export class InfoService {
     });
   }
 
-  version2Number(version) {
+  setActualVersion4Test(v: string) {
+    this.actualVersion = v;
+  }
+  version2Number(version: string): number | string {
     return version
       ? version
           .split(".")

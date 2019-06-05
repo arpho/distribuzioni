@@ -66,6 +66,10 @@ export class UserModel implements ItemModelInterface {
     return this.quickActions;
   }
 
+  getCountingText() {
+    return "utenti";
+  }
+
   serialize() {
     return {
       key: this.key,

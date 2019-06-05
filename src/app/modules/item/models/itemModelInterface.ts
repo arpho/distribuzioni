@@ -13,6 +13,7 @@ export interface ItemModelInterface {
   quickActions?: Array<QuickAction>;
   archived?: boolean;
   getTitle(): Value;
+  getCountingText(): string;
   getNote(): Value;
   build(item: {});
   load(key: string, service: ItemServiceInterface);

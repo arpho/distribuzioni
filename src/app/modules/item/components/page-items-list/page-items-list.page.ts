@@ -28,7 +28,13 @@ export class PageItemsListComponent implements OnInit, OnChanges {
     this.filterFunction = v => true;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.filterFunction = (v: ItemModelInterface) => true;
+    if (this.service) {
+      this.dummyItem = this.service.getDummyItem();
+      console.log("counting", this.dummyItem.getCountingText());
+    }
+  }
 
   async deleteItem(item: ItemModelInterface, slide) {
     slide.close();
