@@ -1,11 +1,11 @@
 {
   "name": "distribuzioni",
-  "version": "0.10.0.2",
+  "version": "0.10.1.0",
   "features": [
     "ui emprovement"
   ],
   "newFeatures": [
-    "quick actions got powers",
+    "firebase function",
     "improved ui"
   ],
   "author": "Arpho",

@@ -67,7 +67,7 @@ export class UserModel implements ItemModelInterface {
   }
 
   getCountingText() {
-    return "utenti";
+    return " utenti";
   }
 
   serialize() {

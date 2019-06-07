@@ -94,7 +94,6 @@ export class EditUserPage implements OnInit {
   }
 
   filter(ev) {
-    console.log("user change", ev);
   }
   submit(ev) {
     console.log("submit", ev);
