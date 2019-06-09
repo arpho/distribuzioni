@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button
+        (click)="goHome()"
+        class="button-clear ion-chevron-left"
+        defaultHref="/home"
+      >
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Non Autorizzato</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <p class="alert-message">{{ message }}</p>
+</ion-content>

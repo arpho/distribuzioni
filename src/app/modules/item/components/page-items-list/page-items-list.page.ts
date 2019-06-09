@@ -32,7 +32,6 @@ export class PageItemsListComponent implements OnInit, OnChanges {
     this.filterFunction = (v: ItemModelInterface) => true;
     if (this.service) {
       this.dummyItem = this.service.getDummyItem();
-      console.log("counting", this.dummyItem.getCountingText());
     }
   }
 

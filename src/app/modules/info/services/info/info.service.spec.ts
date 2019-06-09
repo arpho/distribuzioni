@@ -26,5 +26,6 @@ describe("InfoService", () => {
     expect(
       service.version2Number("1.0.0.1") < service.version2Number("1.0.0.2")
     ).toBeTruthy;
+    expect(service.version2Number(undefined)).toBe(0);
   });
 });

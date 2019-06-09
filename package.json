@@ -1,11 +1,11 @@
 {
   "name": "distribuzioni",
-  "version": "0.10.1.0",
+  "version": "0.10.2.0",
   "features": [
     "ui emprovement"
   ],
   "newFeatures": [
-    "firebase function",
+    "rolGuard is working",
     "improved ui"
   ],
   "author": "Arpho",
@@ -51,6 +51,7 @@
     "core-js": "^2.5.4",
     "firebase": "^5.8.2",
     "firebase-admin": "^8.0.0",
+    "firebase-functions": "^2.3.1",
     "jwt-decode": "^2.2.0",
     "rxjs": "~6.3.3",
     "terser": "^3.14.1",

@@ -13,10 +13,7 @@ const routes: Routes = [
   {
     path: "home",
     loadChildren: "./home/home.module#HomePageModule",
-    canActivate: [RoleGuardService, AuthGuard],
-    data: {
-      expectedRole: [new RoleModel({ level: 3, key: "autorizzato" })]
-    }
+    canActivate: [AuthGuard]
   },
   {
     path: "list",
@@ -33,7 +30,11 @@ const routes: Routes = [
   {
     path: "distribuzione-detail/:key",
     loadChildren:
-      "./pages/distribuzione-detail/distribuzione-detail.module#DistribuzioneDetailPageModule"
+      "./pages/distribuzione-detail/distribuzione-detail.module#DistribuzioneDetailPageModule",
+    canActivate: [RoleGuardService, AuthGuard],
+    data: {
+      expectedRole: [new RoleModel({ level: 2, key: "responsabile" })]
+    }
   },
   {
     path: "distribuzione-create",

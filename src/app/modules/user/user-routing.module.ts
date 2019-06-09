@@ -31,6 +31,11 @@ const routes: Routes = [
     path: "user/edit-user/:key",
     loadChildren: "./pages/edit-user/edit-user.module#EditUserPageModule",
     canActivate: [AuthGuard]
+  },
+  {
+    path: "user/not-authorized/:message",
+    loadChildren:
+      "./pages/not-authorized/not-authorized.module#NotAuthorizedPageModule"
   }
 ];
 @NgModule({

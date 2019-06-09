@@ -17,22 +17,30 @@ export class RoleGuardService implements CanActivate {
     // this will be passed from the route config
     // on the data property
     const expectedRole = route.data.expectedRole[0];
-    console.log("roles", expectedRole);
 
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
       if (user) {
-        console.log(user);
         if (!this.Users.getLoggedUser()) {
-          console.log("setting logged user");
-
-          this.Users.setLoggedUser(user.uid);
         }
         return true;
       } else {
-        console.log("User is not logged in");
         this.router.navigate(["/user/login"]);
       }
     });
+    firebase
+      .auth()
+      .currentUser.getIdTokenResult(true)
+      .then(token => {
+        // tslint:disable-next-line: curly
+        if (token.claims.level <= expectedRole.level) return true;
+        else {
+          const message =
+            "per accedere a questa funzione devi godere almeno dei privilegi da " +
+            expectedRole.key +
+            ". per chiarimenti rivolgiti all'amministratore";
+          this.router.navigate(["user/not-authorized", message]);
+        }
+      });
 
     // const token = localStorage.getItem("token");
     // decode the token to get its payload
