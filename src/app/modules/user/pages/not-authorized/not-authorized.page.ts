@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class NotAuthorizedPage implements OnInit {
   message: string;
+  image: string;
   constructor(public router: Router, public route: ActivatedRoute) {}
 
   goHome() {
@@ -15,6 +16,7 @@ export class NotAuthorizedPage implements OnInit {
   }
 
   ngOnInit() {
+    this.image = "../../assets/img/notcrossing.jpg";
     this.message = this.route.snapshot.paramMap.get("message");
   }
 }

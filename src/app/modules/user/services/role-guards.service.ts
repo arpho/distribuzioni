@@ -31,11 +31,12 @@ export class RoleGuardService implements CanActivate {
       .auth()
       .currentUser.getIdTokenResult(true)
       .then(token => {
+        console.log("claims", token.claims);
         // tslint:disable-next-line: curly
         if (token.claims.level <= expectedRole.level) return true;
         else {
           const message =
-            "per accedere a questa funzione devi godere almeno dei privilegi da " +
+            "per accedere a questa funzione devi godere almeno dei privilegi di " +
             expectedRole.key +
             ". per chiarimenti rivolgiti all'amministratore";
           this.router.navigate(["user/not-authorized", message]);

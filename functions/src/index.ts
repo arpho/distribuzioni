@@ -1,4 +1,6 @@
 import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
+admin.initializeApp();
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -10,12 +12,38 @@ const getUpdatedUser = (event: any) => {
     key => !compare(event.after.val()[key], event.before.val()[key])
   );
 };
+const setClaims = async (data: {
+  email: string;
+  level: number;
+  enabled: boolean;
+}) => {
+  console.log("setting claims", data);
+  const authUser = await admin.auth().getUserByEmail(data.email); // .catch(v=>{console.log('exception',v)});
+  console.log("authUser", authUser.uid);
+  return admin.auth().setCustomUserClaims(authUser.uid, {
+    level: data.level,
+    enabled: data.enabled
+  });
+};
+
 exports.triggerUsers = functions.database.ref("/userProfile").onWrite(event => {
-  // console.log("event", event.after.toJSON());
-  console.log("user1", event.after);
-  console.log("keys2", Object.keys(event.after));
-  console.log("user's keys3", Object.keys(event.after.val()));
-  console.log("updated user4", getUpdatedUser(event));
+  getUpdatedUser(event).forEach(user => {
+    const userData = event.after.val()[user];
+    const claims = {
+      email: userData.email,
+      level: userData.level,
+      enabled: userData.enabled
+    };
+    // tslint:disable-next-line: no-floating-promises
+    setClaims(claims)
+      .then(() => {
+        console.log("setted claims for ", userData.key);
+        console.log("seted claims", claims);
+      })
+      .catch(err => {
+        console.log("error", err);
+      });
+  });
 
   // console.log('snapshot',event.after[event.after.key])
 });

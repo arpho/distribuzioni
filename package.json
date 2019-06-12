@@ -1,8 +1,8 @@
 {
   "name": "distribuzioni",
-  "version": "0.10.2.0",
+  "version": "0.10.3.0",
   "features": [
-    "ui emprovement"
+    "not Authorized page"
   ],
   "newFeatures": [
     "rolGuard is working",
