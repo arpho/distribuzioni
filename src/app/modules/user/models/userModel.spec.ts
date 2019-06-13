@@ -33,7 +33,7 @@ describe("test build function", () => {
     // checkingf privileges level
     expect(user.privileges instanceof RoleModel).toBeTruthy();
     expect(user.privileges.key).toBe("Sviluppatore");
-    expect(user.privileges.level).toBe(1);
+    expect(user.privileges.value).toBe(1);
   });
 });
 describe("serialize should work", () => {

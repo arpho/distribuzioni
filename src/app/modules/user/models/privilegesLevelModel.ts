@@ -1,12 +1,13 @@
-export class RoleModel {
-  public level: number;
+import { ComboValue } from "../../dynamic-form/models/ComboValueinterface";
+export class RoleModel implements ComboValue {
+  public value: number;
   public key: string;
 
   constructor(level: { key: string; level: number }) {
-    this.level = level.level;
+    this.value = level.level;
     this.key = level.key;
   }
   isAllowed(Level: RoleModel) {
-    return this.level <= Level.level;
+    return this.value <= Level.value;
   }
 }

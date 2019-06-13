@@ -93,19 +93,18 @@ export class EditUserPage implements OnInit {
     this.questions = questions;
   }
 
-  filter(ev) {
-  }
+  filter(ev) {}
   submit(ev) {
     console.log("submit", ev);
     ev.email = this.currentUser.email; // non modifico email
     const user = new UserModel(ev);
     user.key = this.currentUser.key;
     user.privileges = configs.accessLevel.filter((r: RoleModel) => {
-      r.level == this.currentUser.level;
+      r.value == this.currentUser.level;
     })[0];
     console.log("updating user", user);
     user.privileges = configs.accessLevel.filter(
-      (v: RoleModel) => v.level == ev.level
+      (v: RoleModel) => v.value == ev.level
     )[0];
     /*admin.auth().setCustomUserClaims(this.currentUser.key, {
       role: this.currentUser.level

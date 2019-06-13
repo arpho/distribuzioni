@@ -56,7 +56,7 @@ export class UserModel implements ItemModelInterface {
       this.birthDate = new BirthDateModel(item["birthDate"]);
     }
     this.privileges = configs.accessLevel.filter(
-      (access: RoleModel) => access.level == this.level
+      (access: RoleModel) => access.value == this.level
     )[0];
   }
   hasQuickActions() {
@@ -78,7 +78,7 @@ export class UserModel implements ItemModelInterface {
       firstName: this.firstName,
       lastName: this.lastName,
       enabled: this.enabled,
-      level: this.privileges.level
+      level: this.privileges.value
     };
   }
 
@@ -95,7 +95,7 @@ export class UserModel implements ItemModelInterface {
 
   getValue3() {
     const ruolo: RoleModel = configs.accessLevel.filter(
-      (v: RoleModel) => v.level == this.level
+      (v: RoleModel) => v.value == this.level
     )[0];
     const value = new Value({ value: ruolo.key, label: "ruolo " });
     return value;
